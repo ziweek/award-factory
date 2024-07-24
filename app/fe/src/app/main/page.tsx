@@ -204,7 +204,7 @@ export default function Home() {
                         className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10"
                       >
                         <div
-                          className="relative grid grid-cols-3 grid-rows-4 h-full space-y-4 content-between z-10"
+                          className="relative grid grid-cols-3 grid-rows-4 h-full gap-4 content-between z-10"
                           style={{
                             gridTemplateRows: "auto auto 1fr auto",
                           }}
@@ -371,7 +371,7 @@ export default function Home() {
                             className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10"
                           >
                             <div
-                              className="relative grid grid-cols-3 grid-rows-4 h-full space-y-4 content-between z-10"
+                              className="relative grid grid-cols-3 grid-rows-4 h-full gap-4 content-between z-10"
                               style={{
                                 gridTemplateRows: "auto auto 1fr auto",
                               }}
