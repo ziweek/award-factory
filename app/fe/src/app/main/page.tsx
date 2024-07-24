@@ -201,7 +201,7 @@ export default function Home() {
                     <div className="flex flex-col gap-8 w-full items-center overflow-y-scroll pt-4">
                       <div
                         id="award"
-                        className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10"
+                        className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10 h-[420px]"
                       >
                         <div
                           className="relative grid grid-cols-3 grid-rows-4 h-full gap-4 content-between z-10"
@@ -368,7 +368,7 @@ export default function Home() {
                         >
                           <div
                             id="award"
-                            className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10"
+                            className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10 h-[420px]"
                           >
                             <div
                               className="relative grid grid-cols-3 grid-rows-4 h-full gap-4 content-between z-10"
