@@ -54,7 +54,7 @@ export default function Home() {
         label: "상장 내용",
         placeholder:
           "별이 빛나는 밤에도 일을 놓지 않는 당신의 열정에 감사를 담아 이 상을 드립니다.",
-        max: 45,
+        max: 120,
         isValid: true,
       },
       {
