@@ -60,7 +60,7 @@ export default function HorizontalSlider(props: any) {
                       </div>
                     )}
                   </div>
-                  <p className="text-pretty line-clamp-4 w-full whitespace-normal text-start text-sm ">
+                  <p className="text-pretty line-clamp-4 w-full whitespace-normal text-start text-sm">
                     {e.text}
                   </p>
                   {e?.badge && e?.badge != null && (
