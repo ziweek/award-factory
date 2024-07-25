@@ -20,7 +20,11 @@ import { getLocalTimeZone, today } from "@internationalized/date";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import html2canvas from "html2canvas";
-import { IconGithub } from "@/component/common/icons";
+import { IconComment, IconGithub, IconLike } from "@/component/common/icons";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Footer from "@/component/footer";
+
 export default function Home() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
@@ -148,6 +152,7 @@ export default function Home() {
     //     className: "leading-relaxed text-center font-bold",
     //   }
     // );
+    AOS.init({ once: true, mirror: false });
     const checkResize = () => {
       if (isMobile) {
         setMobile(true);
@@ -160,9 +165,9 @@ export default function Home() {
 
   return (
     <>
-      <section className="h-screen w-full select-none flex-col justify-start items-center">
+      <section className="h-full min-h-screen w-full select-none flex-col justify-start items-center">
         <div
-          className={`flex h-full w-full flex-col items-center justify-start gap-2 pb-6 pt-2 px-4 max-w-[600px] mx-auto`}
+          className={`flex h-full w-full flex-col items-center justify-start gap-2 pb-6 pt-2 px-4 max-w-[600px] mx-auto space-y-4`}
         >
           <Header></Header>
           <div className="w-full h-full flex flex-col gap-y-8">
@@ -200,6 +205,8 @@ export default function Home() {
                   <div>
                     <div className="flex flex-col gap-8 w-full items-center overflow-y-scroll pt-4">
                       <div
+                        data-aos="fade-up"
+                        data-aos-duration={300}
                         id="award"
                         className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10 h-[420px]"
                       >
@@ -230,8 +237,6 @@ export default function Home() {
                         <div
                           className="absolute w-[200%] scale-50 z-0 aspect-[5/7] bg-contain flex flex-col justify-center items-center p-8 py-10 border-2 drop-shadow-sm"
                           style={{
-                            // width: "200%",
-                            // scale: 0.5,
                             backgroundImage: `url(/images/award-template-1.png)`,
                           }}
                         ></div>
@@ -324,9 +329,20 @@ export default function Home() {
                         <Button
                           radius={"none"}
                           variant={"faded"}
+                          className="h-[60px] w-full bg-orange-400 text-[#ffffff] font-bold border-0"
+                          fullWidth
+                          size={"lg"}
+                          isDisabled
+                        >
+                          <p>명예의 전당에 등록하기</p>
+                        </Button>
+                        <Button
+                          radius={"none"}
+                          variant={"faded"}
                           className="h-[60px] w-full bg-[#FEE500] text-[#000000] font-bold border-0"
                           fullWidth
                           size={"lg"}
+                          isDisabled
                         >
                           <p>카카오톡으로 전송하기</p>
                         </Button>
@@ -355,15 +371,60 @@ export default function Home() {
                 >
                   <div className="flex flex-col items-center space-y-12 pt-4 pb-8">
                     {[
-                      { text: "전체 발화 시간", value: 421 },
-                      { text: "식별된 발화 시간", value: 421 },
-                      { text: "방어한 발화 시간", value: 421 },
-                      { text: "식발한 단어 수", value: 421 },
-                      { text: "ASR 방어에 성공한 글자", value: 421 },
+                      {
+                        title: "커피 애호가상",
+                        winner: "이카페",
+                        description:
+                          "매일 아침 당신의 책상 위에서 빛나는 커피잔에게 이 상을 드립니다.",
+                        publisher: "카페인 중독자 협회",
+                        date: "2024년 7월 24일",
+                      },
+                      {
+                        title: "점심시간 장인상",
+                        winner: "박점심",
+                        description:
+                          "점심시간마다 최고의 맛집을 찾아내는 당신의 능력에 감사를 담아 이 상을 드립니다.",
+                        publisher: "맛집 탐방 위원회",
+                        date: "2024년 7월 24일",
+                      },
+                      {
+                        title: "회의의 달인상",
+                        winner: "정회의",
+                        description:
+                          "끝없는 회의에도 굴하지 않는 당신의 인내심에 감사를 담아 이 상을 드립니다.",
+                        publisher: "회의 혁신 위원회",
+                        date: "2024년 7월 24일",
+                      },
+                      {
+                        title: "지각왕상",
+                        winner: "최지각",
+                        description:
+                          "항상 독특한 이유로 지각하는 당신의 창의력에 감사를 담아 이 상을 드립니다.",
+                        publisher: "시간 관리 위원회",
+                        date: "2024년 7월 24일",
+                      },
+                      {
+                        title: "야근의 신상",
+                        winner: "신야근",
+                        description:
+                          "야근을 예술의 경지로 끌어올린 당신의 열정에 감사를 담아 이 상을 드립니다.",
+                        publisher: "야근 근절 위원회",
+                        date: "2024년 7월 24일",
+                      },
+                      {
+                        title: "휴가의 달인상",
+                        winner: "강휴가",
+                        description:
+                          "휴가 계획을 세우는 당신의 철저한 준비성에 감사를 담아 이 상을 드립니다.",
+                        publisher: "휴가 장려 위원회",
+                        date: "2024년 7월 24일",
+                      },
                     ].map((e, i) => {
                       return (
                         <div
                           key={i}
+                          data-aos="fade-up"
+                          data-aos-duration={300 * (i + 1)}
                           className="flex flex-col items-center space-y-2"
                         >
                           <div
@@ -377,36 +438,58 @@ export default function Home() {
                               }}
                             >
                               <p className="col-span-3 w-full text-center text-xl font-light">
-                                {inputOption.inputValues.title}
+                                {e.title}
                               </p>
                               <p className="col-span-3 w-full text-right text-md font-light">
-                                {inputOption.inputValues.winner}
+                                {e.winner}
                               </p>
                               <p className="col-span-3 w-full text-center self-center text-lg font-light">
-                                {inputOption.inputValues.description}
+                                {e.description}
                               </p>
                               <div className="flex flex-col w-full items-center col-span-3">
                                 <p className="w-full text-center text-md font-light">
-                                  {inputOption.inputValues.publisher}
+                                  {e.publisher}
                                 </p>
                                 <p className="w-full text-center text-md font-light">
-                                  {inputOption.inputValues.date}
+                                  {e.date}
                                 </p>
                               </div>
                             </div>
                             <div
                               className="absolute w-[200%] scale-50 z-0 aspect-[5/7] bg-contain flex flex-col justify-center items-center p-8 py-10 border-2 drop-shadow-sm"
                               style={{
-                                // width: "200%",
-                                // scale: 0.5,
                                 backgroundImage: `url(/images/award-template-1.png)`,
                               }}
                             ></div>
                           </div>
-                          <div className="flex flex-row space-x-4">
-                            <IconGithub width={35}></IconGithub>
-                            <IconGithub width={35}></IconGithub>
-                          </div>
+                          {/* <div className="flex flex-row space-x-4 w-full">
+                            <Button
+                              isIconOnly
+                              variant={"light"}
+                              color={"primary"}
+                              size={"sm"}
+                              // onPress={() => {
+                              //   window.open(
+                              //     "https://www.linkedin.com/in/jiuk-kim-42248325a/"
+                              //   );
+                              // }}
+                            >
+                              <IconLike width={30} fill="#000"></IconLike>
+                            </Button>
+                            <Button
+                              isIconOnly
+                              variant={"light"}
+                              color={"primary"}
+                              size={"sm"}
+                              // onPress={() => {
+                              //   window.open(
+                              //     "https://www.linkedin.com/in/jiuk-kim-42248325a/"
+                              //   );
+                              // }}
+                            >
+                              <IconComment width={30} fill="#000"></IconComment>
+                            </Button>
+                          </div> */}
                         </div>
                       );
                     })}
@@ -416,6 +499,10 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <Footer
+          title={"상장 제조기"}
+          subtitle={"저와 소통하실 분은 아래에서 만나요!"}
+        ></Footer>
       </section>
       {/* <Toaster></Toaster> */}
       {/* <Modal

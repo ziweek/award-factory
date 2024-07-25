@@ -1,9 +1,15 @@
 "use client";
 
 import { Button } from "@nextui-org/react";
-import { IconGithub, IconLinkedIn, IconLogo } from "./common/icons";
+import {
+  IconGithub,
+  IconLinkedIn,
+  IconLogo,
+  IconSetting,
+} from "./common/icons";
 import { LottieSecurityCheck } from "./common/lotties";
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 
 export default function Header(props: any) {
   const queryButtonOption = useQuery<any>({
@@ -37,11 +43,13 @@ export default function Header(props: any) {
               ></LottieSecurityCheck>
             )}
           </div> */}
-          {/* <IconLogo fill="#000" width={100}></IconLogo> */}
-          <p className="font-bold text-xl">상장 제조기</p>
+          <div className="flex flex-row space-x-2 items-end">
+            <IconLogo fill="#000" width={30}></IconLogo>
+            <p className="font-bold text-xl">상장 제조기</p>
+          </div>
         </div>
         <div className="flex h-fit flex-row gap-2">
-          <Button
+          {/* <Button
             isIconOnly
             color={"primary"}
             variant={"light"}
@@ -62,18 +70,18 @@ export default function Header(props: any) {
             }}
           >
             <IconLinkedIn fill="#000" width={"20px"}></IconLinkedIn>
-          </Button>
-          {/* <Button
+          </Button> */}
+          <Button
             isIconOnly
             variant={"light"}
             color={"primary"}
             size={"sm"}
-            onPress={() => {
-              window.open("https://www.linkedin.com/in/jiuk-kim-42248325a/");
-            }}
+            // onPress={() => {
+            //   window.open("https://www.linkedin.com/in/jiuk-kim-42248325a/");
+            // }}
           >
-            <IconSetting fill="#1D4A83" width={"25px"}></IconSetting>
-          </Button> */}
+            <IconSetting fill="#1D4A83" width={"30px"}></IconSetting>
+          </Button>
         </div>
       </div>
     </section>
