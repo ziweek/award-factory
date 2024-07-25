@@ -24,7 +24,7 @@ const nanumSquareNeo = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "상장 제조기 | 내 손으로 빚어낸 나만의 상장",
+  title: "상장 공장 | 내 손으로 빚어낸 나만의 상장",
   description: "내 손으로 빚어낸 나만의 상장",
   viewport: {
     width: "device-width",
@@ -55,7 +55,7 @@ export default function RootLayout({
         <meta name="application-name" content="" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="상장 제조기" />
+        <meta name="apple-mobile-web-app-title" content="상장 공장" />
         <meta name="description" content="내 손으로 빚어낸 나만의 상장" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -107,7 +107,7 @@ export default function RootLayout({
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:url" content="https://yourdomain.com" />
-        <meta name="twitter:title" content="상장 제조기" />
+        <meta name="twitter:title" content="상장 공장" />
         <meta
           name="twitter:description"
           content="내 손으로 빚어낸 나만의 상장"
@@ -118,12 +118,12 @@ export default function RootLayout({
         />
         <meta name="twitter:creator" content="@DavidWShadow" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="상장 제조기" />
+        <meta property="og:title" content="상장 공장" />
         <meta
           property="og:description"
           content="내 손으로 빚어낸 나만의 상장"
         />
-        <meta property="og:site_name" content="상장 제조기" />
+        <meta property="og:site_name" content="상장 공장" />
         <meta property="og:url" content="https://yourdomain.com" />
         <meta
           property="og:image"

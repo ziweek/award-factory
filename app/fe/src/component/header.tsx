@@ -1,15 +1,8 @@
 "use client";
 
 import { Button } from "@nextui-org/react";
-import {
-  IconGithub,
-  IconLinkedIn,
-  IconLogo,
-  IconSetting,
-} from "./common/icons";
-import { LottieSecurityCheck } from "./common/lotties";
+import { IconLogo, IconSetting } from "./common/icons";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
 
 export default function Header(props: any) {
   const queryButtonOption = useQuery<any>({
@@ -23,7 +16,7 @@ export default function Header(props: any) {
       className={`top-0 z-50 h-[40px] w-full ${props.isFixed ? "" : ""}`}
     >
       <div className="flex h-[40px] w-full select-none flex-row gap-1 justify-between items-center">
-        <div className="flex flex-row">
+        <div className="flex flex-row items-end">
           {/* <div
             className={`h-[40px] w-[30px] flex flex-col justify-center overflow-x-clip`}
           >
@@ -45,7 +38,7 @@ export default function Header(props: any) {
           </div> */}
           <div className="flex flex-row space-x-2 items-end">
             <IconLogo fill="#000" width={30}></IconLogo>
-            <p className="font-bold text-xl">상장 제조기</p>
+            <p className="font-bold text-xl">상장 공장</p>
           </div>
         </div>
         <div className="flex h-fit flex-row gap-2">
@@ -80,7 +73,7 @@ export default function Header(props: any) {
             //   window.open("https://www.linkedin.com/in/jiuk-kim-42248325a/");
             // }}
           >
-            <IconSetting fill="#1D4A83" width={"30px"}></IconSetting>
+            <IconSetting fill="#000" width={"30px"}></IconSetting>
           </Button>
         </div>
       </div>

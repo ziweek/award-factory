@@ -56,15 +56,15 @@ export default function Home() {
           <div className="z-20 flex w-full flex-col items-center justify-center space-y-8">
             {/* 소개 텍스트 */}
             <div className="flex w-full flex-col items-center justify-center gap-2">
-              {/* <IconLogo width={mobile ? 150 : 200} fill="#fff"></IconLogo> */}
-              <p className="font-bold text-4xl text-white">상장 제조기</p>
+              <IconLogo width={mobile ? 100 : 120} fill="#fff"></IconLogo>
+              <p className="font-bold text-4xl text-white">상장 공장</p>
               <p
                 className={`text-center font-bold text-white ${
                   mobile ? "text-md" : "text-lg"
                 }`}
               >
-                소중한 사람에게 상장을 만들어{mobile && <br></br>} 감사한 마음을
-                전달해보는 것은 어떨까요?
+                소중한 사람에게 감사한 마음을 {mobile && <br></br>}전달해보는
+                것은 어떨까요?
               </p>
             </div>
             {/*  */}
@@ -90,9 +90,7 @@ export default function Home() {
                   variant={"bordered"}
                   aria-label="information"
                   onClick={() => {
-                    window.open(
-                      "https://www.canva.com/design/DAGGtLZZIik/pXgzqOEimHFKjbO9cdE3kg/edit?utm_content=DAGGtLZZIik&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
-                    );
+                    window.open("https://github.com/ziweek/award-factory");
                   }}
                 >
                   프로젝트 소개자료
@@ -109,13 +107,17 @@ export default function Home() {
                     router.push("/main");
                   }}
                 >
-                  프로젝트 체험하기
+                  프로젝트 시작하기
                 </Button>
               </div>
             </div>
           </div>
           <div className="absolute bottom-4">
-            <LottieArrowDown play loop width={80}></LottieArrowDown>
+            <LottieArrowDown
+              play
+              loop
+              width={mobile ? 40 : 80}
+            ></LottieArrowDown>
           </div>
           {/* <div className="absolute z-10 h-screen w-auto min-w-full max-w-none bg-black/75"></div> */}
           {/* <video
@@ -282,7 +284,7 @@ export default function Home() {
             className="flex flex-col items-center justify-center space-y-4"
           >
             <p className="select-none text-center text-2xl font-bold leading-snug">
-              상장 제조기에 숨겨놓은<br></br>또다른 놀라운 기술들
+              상장 공장에 숨겨놓은<br></br>또다른 놀라운 기술들
             </p>
           </div>
           <div
@@ -340,7 +342,7 @@ export default function Home() {
         </div>
         <Footer
           isFixed
-          title={"상장 제조기"}
+          title={"상장 공장"}
           subtitle={"행복 전염 프로젝트"}
         ></Footer>
       </section>
