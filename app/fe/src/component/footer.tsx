@@ -15,7 +15,7 @@ export default function Footer(props: any) {
           <p className="text-sm font-bold">{props.title}</p>
           <p className="text-tiny">{props.subtitle}</p>
         </div>
-        <div className="flex h-full flex-row gap-1 ">
+        <div className="flex h-full flex-row gap-1">
           <Button
             isIconOnly
             color={"primary"}
