@@ -500,7 +500,7 @@ export default function Home() {
           </div>
         </div>
         <Footer
-          title={"상장 제조기"}
+          title={"상장 공장"}
           subtitle={"저와 소통하실 분은 아래에서 만나요!"}
         ></Footer>
       </section>
