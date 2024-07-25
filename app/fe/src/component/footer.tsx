@@ -25,7 +25,7 @@ export default function Footer(props: any) {
               window.open("https://github.com/ziweek");
             }}
           >
-            <IconGithub fill="#1D4A83" width={"20px"}></IconGithub>
+            <IconGithub fill="#000" width={"20px"}></IconGithub>
           </Button>
           <Button
             isIconOnly
@@ -36,7 +36,7 @@ export default function Footer(props: any) {
               window.open("https://www.linkedin.com/in/jiuk-kim-42248325a/");
             }}
           >
-            <IconLinkedIn fill="#1D4A83" width={"20px"}></IconLinkedIn>
+            <IconLinkedIn fill="#000" width={"20px"}></IconLinkedIn>
           </Button>
         </div>
       </div>
