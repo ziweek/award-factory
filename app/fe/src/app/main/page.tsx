@@ -20,7 +20,7 @@ import { getLocalTimeZone, today } from "@internationalized/date";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import html2canvas from "html2canvas";
-import { IconComment, IconGithub, IconLike } from "@/component/common/icons";
+import { IconComment, IconGithub, IconFire } from "@/component/common/icons";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/component/footer";
@@ -138,6 +138,44 @@ export default function Home() {
     isModalOpen: false,
     buttonSelected: "",
   });
+  const [hallOfFame, setHallOfFame] = useState([
+    {
+      title: "커피 애호가상",
+      winner: "이카페",
+      description:
+        "매일 아침 당신의 책상 위에서 빛나는 커피잔에게 이 상을 드립니다.",
+      publisher: "카페인 중독자 협회",
+      date: "2024년 7월 24일",
+      ranking: 1,
+      isLiked: true,
+      countOfLike: 102,
+      isCommented: true,
+    },
+    {
+      title: "점심시간 장인상",
+      winner: "박점심",
+      description:
+        "점심시간마다 최고의 맛집을 찾아내는 당신의 능력에 감사를 담아 이 상을 드립니다.",
+      publisher: "맛집 탐방 위원회",
+      date: "2024년 7월 24일",
+      ranking: 2,
+      isLiked: true,
+      countOfLike: 85,
+      isCommented: false,
+    },
+    {
+      title: "회의의 달인상",
+      winner: "정회의",
+      description:
+        "끝없는 회의에도 굴하지 않는 당신의 인내심에 감사를 담아 이 상을 드립니다.",
+      publisher: "회의 혁신 위원회",
+      date: "2024년 7월 24일",
+      ranking: 3,
+      isLiked: true,
+      countOfLike: 42,
+      isCommented: true,
+    },
+  ]);
 
   const queryinputOption = useQuery<any>({
     queryKey: ["inputOption"],
@@ -146,12 +184,6 @@ export default function Home() {
   });
 
   useEffect(() => {
-    // toast(
-    //   "👏 안녕하세요!\n\n본 데모 버전에서는 아이디와 비밀번호 없이 로그인하실 수 있습니다.",
-    //   {
-    //     className: "leading-relaxed text-center font-bold",
-    //   }
-    // );
     AOS.init({ once: true, mirror: false });
     const checkResize = () => {
       if (isMobile) {
@@ -370,56 +402,7 @@ export default function Home() {
                   }
                 >
                   <div className="flex flex-col items-center space-y-12 pt-4 pb-8">
-                    {[
-                      {
-                        title: "커피 애호가상",
-                        winner: "이카페",
-                        description:
-                          "매일 아침 당신의 책상 위에서 빛나는 커피잔에게 이 상을 드립니다.",
-                        publisher: "카페인 중독자 협회",
-                        date: "2024년 7월 24일",
-                      },
-                      {
-                        title: "점심시간 장인상",
-                        winner: "박점심",
-                        description:
-                          "점심시간마다 최고의 맛집을 찾아내는 당신의 능력에 감사를 담아 이 상을 드립니다.",
-                        publisher: "맛집 탐방 위원회",
-                        date: "2024년 7월 24일",
-                      },
-                      {
-                        title: "회의의 달인상",
-                        winner: "정회의",
-                        description:
-                          "끝없는 회의에도 굴하지 않는 당신의 인내심에 감사를 담아 이 상을 드립니다.",
-                        publisher: "회의 혁신 위원회",
-                        date: "2024년 7월 24일",
-                      },
-                      {
-                        title: "지각왕상",
-                        winner: "최지각",
-                        description:
-                          "항상 독특한 이유로 지각하는 당신의 창의력에 감사를 담아 이 상을 드립니다.",
-                        publisher: "시간 관리 위원회",
-                        date: "2024년 7월 24일",
-                      },
-                      {
-                        title: "야근의 신상",
-                        winner: "신야근",
-                        description:
-                          "야근을 예술의 경지로 끌어올린 당신의 열정에 감사를 담아 이 상을 드립니다.",
-                        publisher: "야근 근절 위원회",
-                        date: "2024년 7월 24일",
-                      },
-                      {
-                        title: "휴가의 달인상",
-                        winner: "강휴가",
-                        description:
-                          "휴가 계획을 세우는 당신의 철저한 준비성에 감사를 담아 이 상을 드립니다.",
-                        publisher: "휴가 장려 위원회",
-                        date: "2024년 7월 24일",
-                      },
-                    ].map((e, i) => {
+                    {hallOfFame.map((e, i) => {
                       return (
                         <div
                           key={i}
@@ -427,6 +410,15 @@ export default function Home() {
                           data-aos-duration={300 * (i + 1)}
                           className="flex flex-col items-center space-y-2"
                         >
+                          <div>
+                            <p className="font-light text-4xl">
+                              {e.ranking == 1
+                                ? "대상"
+                                : e.ranking == 2
+                                ? "우수상"
+                                : "장려상"}
+                            </p>
+                          </div>
                           <div
                             id="award"
                             className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10 h-[420px]"
@@ -462,34 +454,48 @@ export default function Home() {
                               }}
                             ></div>
                           </div>
-                          {/* <div className="flex flex-row space-x-4 w-full">
+                          <div className="flex flex-row space-x-2 w-full items-center justify-center">
                             <Button
-                              isIconOnly
                               variant={"light"}
-                              color={"primary"}
-                              size={"sm"}
+                              color={"default"}
+                              size={"md"}
                               // onPress={() => {
                               //   window.open(
                               //     "https://www.linkedin.com/in/jiuk-kim-42248325a/"
                               //   );
                               // }}
                             >
-                              <IconLike width={30} fill="#000"></IconLike>
+                              <div className="flex flex-row space-x-2 items-center justify-center">
+                                <IconFire
+                                  width={30}
+                                  fill="#000"
+                                  isActivated={e.isLiked}
+                                ></IconFire>
+                                <p className="text-xl font-light">
+                                  {e.countOfLike}
+                                </p>
+                              </div>
                             </Button>
-                            <Button
-                              isIconOnly
+                            {/* <Button
                               variant={"light"}
-                              color={"primary"}
-                              size={"sm"}
+                              color={"default"}
+                              size={"md"}
                               // onPress={() => {
                               //   window.open(
                               //     "https://www.linkedin.com/in/jiuk-kim-42248325a/"
                               //   );
                               // }}
                             >
-                              <IconComment width={30} fill="#000"></IconComment>
-                            </Button>
-                          </div> */}
+                              <div className="flex flex-row space-x-2 items-center justify-center">
+                                <IconComment
+                                  width={30}
+                                  fill="#000"
+                                  isActivated={e.isCommented}
+                                ></IconComment>
+                                <p className="text-xl font-light">123</p>
+                              </div>
+                            </Button> */}
+                          </div>
                         </div>
                       );
                     })}
@@ -504,37 +510,7 @@ export default function Home() {
           subtitle={"저와 소통하실 분은 아래에서 만나요!"}
         ></Footer>
       </section>
-      {/* <Toaster></Toaster> */}
-      {/* <Modal
-        isOpen={modalOption.isModalOpen}
-        size={mobile ? "full" : "2xl"}
-        placement={"bottom"}
-        scrollBehavior={"inside"}
-      >
-        <ModalContent className="pb-6">
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                {modalOption.buttonSelected}
-              </ModalHeader>
-              <ModalBody>{inputOption.inputContent[0].desription}</ModalBody>
-              <ModalFooter className="w-full flex flex-row items-stretch justify-center">
-                <Button
-                  color="danger"
-                  variant="light"
-                  onPress={() => {
-                    setModalOption({ ...modalOption, isModalOpen: false });
-                  }}
-                  size={"sm"}
-                >
-                  돌아가기
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal> */}
-      {/* <Modal isOpen={modalOption.isTutorialOpen} placement={"bottom"}>
+      <Modal isOpen={modalOption.isTutorialOpen} placement={"bottom"}>
         <ModalContent className="pb-6">
           {(onClose) => (
             <>
@@ -613,7 +589,7 @@ export default function Home() {
             </>
           )}
         </ModalContent>
-      </Modal> */}
+      </Modal>
     </>
   );
 }

@@ -18,7 +18,7 @@ export default function Footer(props: any) {
         <div className="flex h-full flex-row gap-1">
           <Button
             isIconOnly
-            color={"primary"}
+            color={"default"}
             variant={"light"}
             size={"sm"}
             onPress={() => {
@@ -30,7 +30,7 @@ export default function Footer(props: any) {
           <Button
             isIconOnly
             variant={"light"}
-            color={"primary"}
+            color={"default"}
             size={"sm"}
             onPress={() => {
               window.open("https://www.linkedin.com/in/jiuk-kim-42248325a/");
