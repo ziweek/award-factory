@@ -87,7 +87,7 @@ export default function Home() {
         image: "",
       },
       {
-        title: "도청 방지 모델!",
+        title: "상장 만들기",
         desription: (
           <div className="space-y-4 leading-loose">
             <p>
@@ -99,19 +99,7 @@ export default function Home() {
         image: "",
       },
       {
-        title: "부가 기능!",
-        desription: (
-          <div className="space-y-4 leading-loose">
-            <p>
-              자동 음성 인식(ASR, Automatic Speech Recognition)은 음성을
-              텍스트로 변환하는 기술입니다. 이 기술은 마이크로폰으로 수집된 음성
-            </p>
-          </div>
-        ),
-        image: "",
-      },
-      {
-        title: "통계 요약!",
+        title: "명예의 전당",
         desription: (
           <div className="space-y-4 leading-loose">
             <p>
@@ -223,7 +211,7 @@ export default function Home() {
                       showArrow
                       isOpen={
                         modalOption.isTutorialOpen &&
-                        modalOption.tutorialContentIndex == 2
+                        modalOption.tutorialContentIndex == 1
                       }
                       placement={"bottom"}
                       color={"primary"}
@@ -235,7 +223,7 @@ export default function Home() {
                   }
                 >
                   <div>
-                    <div className="flex flex-col gap-8 w-full items-center overflow-y-scroll pt-4">
+                    <div className="flex flex-col gap-8 w-full items-center pt-4">
                       <div
                         data-aos="fade-up"
                         data-aos-duration={300}
@@ -390,7 +378,7 @@ export default function Home() {
                       showArrow
                       isOpen={
                         modalOption.isTutorialOpen &&
-                        modalOption.tutorialContentIndex == 3
+                        modalOption.tutorialContentIndex == 2
                       }
                       placement={"bottom"}
                       color={"primary"}
@@ -511,7 +499,7 @@ export default function Home() {
         ></Footer>
       </section>
       <Modal isOpen={modalOption.isTutorialOpen} placement={"bottom"}>
-        <ModalContent className="pb-6">
+        <ModalContent className={mobile ? "pb-6" : ""}>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
@@ -539,7 +527,7 @@ export default function Home() {
                       });
                     }
                   }}
-                  disabled={modalOption.tutorialContentIndex == 0}
+                  isDisabled={modalOption.tutorialContentIndex == 0}
                   size={"sm"}
                 >
                   이전으로
@@ -573,7 +561,7 @@ export default function Home() {
                       });
                     }
                   }}
-                  disabled={
+                  isDisabled={
                     modalOption.tutorialContentIndex ==
                     modalOption.tutorialContent.length - 1
                   }
