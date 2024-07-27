@@ -418,6 +418,7 @@ export default function Home() {
                           className="h-[60px] w-full bg-[#FEE500] text-[#000000] font-bold border-0"
                           fullWidth
                           size={"lg"}
+                          isLoading={false}
                           // isDisabled
                           onPress={() => {
                             const target = document.getElementById("award");
@@ -428,14 +429,24 @@ export default function Home() {
                               //   width: 2480,
                               //   height: 3508,
                               scale: 3,
-                            }).then((canvas) => {
-                              const award = canvas.toDataURL("image/png");
-                              navigator
+                            }).then(async (canvas) => {
+                              var imgDataUrl = canvas.toDataURL("image/png");
+
+                              var blobBin = atob(imgDataUrl.split(",")[1]); // base64 데이터 디코딩
+                              var array = [];
+                              for (var i = 0; i < blobBin.length; i++) {
+                                array.push(blobBin.charCodeAt(i));
+                              }
+                              var file = await new File(
+                                [new Uint8Array(array)],
+                                "award.png",
+                                { type: "image/png" }
+                              );
+                              await navigator
                                 .share?.({
                                   title: "상장 공장",
                                   text: "내 손으로 빚은 나만의 상장",
-                                  url: award,
-                                  // files: [award],
+                                  files: [file],
                                 })
                                 .catch(console.error);
                             });
