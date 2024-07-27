@@ -221,7 +221,7 @@ export default function Home() {
                 >
                   <div>
                     <div className="flex flex-col gap-8 w-full items-center pt-4">
-                      <div
+                      {/* <div
                         data-aos="fade-up"
                         data-aos-duration={300}
                         id="award"
@@ -261,7 +261,8 @@ export default function Home() {
                               )[0].src,
                           }}
                         ></div>
-                      </div>
+                      </div> */}
+                      <AwardVertical awardOption={awardOption}></AwardVertical>
                       <div className="w-full space-y-2">
                         <p>상장 테두리 양식</p>
                         <Dropdown>
@@ -410,7 +411,7 @@ export default function Home() {
                           fullWidth
                           size={"lg"}
                         >
-                          <p>명예의 전당에 등록하기</p>
+                          <p>명예의 전당에 제출하기</p>
                         </Button>
                         <Button
                           radius={"none"}
@@ -419,7 +420,7 @@ export default function Home() {
                           fullWidth
                           size={"lg"}
                           isLoading={false}
-                          // isDisabled
+                          isDisabled
                           onPress={() => {
                             const target = document.getElementById("award");
                             if (!target) {
@@ -454,7 +455,7 @@ export default function Home() {
                             navigator.vibrate?.([30, 20, 10]);
                           }}
                         >
-                          <p>카카오톡으로 전송하기</p>
+                          <p>다른 서비스에 공유하기</p>
                         </Button>
                       </div>
                     </div>
@@ -656,5 +657,92 @@ export default function Home() {
         </ModalContent>
       </Modal>
     </>
+  );
+}
+
+function AwardHorizontal(props: any) {
+  return (
+    <div
+      data-aos="fade-up"
+      data-aos-duration={300}
+      id="award"
+      className="relative w-[250px] aspect-[7/5] flex flex-col justify-center items-center py-4"
+    >
+      <div
+        className="relative grid grid-cols-3 grid-rows-4 h-fit gap-4 content-between z-10"
+        style={{
+          gridTemplateRows: "auto auto auto auto",
+        }}
+      >
+        <p className="col-span-3 w-full text-center text-xl font-light">
+          {props.awardOption.awardValues.title}
+        </p>
+        <p className="col-span-3 w-full text-right text-md font-light">
+          {props.awardOption.awardValues.winner}
+        </p>
+        <p className="col-span-3 w-full text-center self-center text-lg font-light">
+          {props.awardOption.awardValues.description}
+        </p>
+        <div className="flex flex-col w-full items-center col-span-3">
+          <p className="w-full text-center text-md font-light">
+            {props.awardOption.awardValues.publisher}
+          </p>
+          <p className="w-full text-center text-md font-light">
+            {props.awardOption.awardValues.date}
+          </p>
+        </div>
+      </div>
+      <div
+        className="absolute w-[200%] scale-50 z-0 aspect-[5/7] bg-contain flex flex-col justify-center items-center p-8 py-10 border-2 drop-shadow-sm rotate-90"
+        style={{
+          backgroundImage: props.awardOption.cornerShapeContent.filter(
+            (c: any) => c.key == props.awardOption.awardValues.cornerShape
+          )[0].src,
+        }}
+      ></div>
+    </div>
+  );
+}
+function AwardVertical(props: any) {
+  return (
+    <div
+      data-aos="fade-up"
+      data-aos-duration={300}
+      id="award"
+      className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10 h-[420px]"
+    >
+      <div
+        className="relative grid grid-cols-3 grid-rows-4 h-full gap-4 content-between z-10"
+        style={{
+          gridTemplateRows: "auto auto 1fr auto",
+        }}
+      >
+        <p className="col-span-3 w-full text-center text-xl font-light">
+          {props.awardOption.awardValues.title}
+        </p>
+        <p className="col-span-3 w-full text-right text-md font-light">
+          {props.awardOption.awardValues.winner}
+        </p>
+        <p className="col-span-3 w-full text-center self-center text-lg font-light">
+          {props.awardOption.awardValues.description}
+        </p>
+        <div className="flex flex-col w-full items-center col-span-3">
+          <p className="w-full text-center text-md font-light">
+            {props.awardOption.awardValues.publisher}
+          </p>
+          <p className="w-full text-center text-md font-light">
+            {props.awardOption.awardValues.date}
+          </p>
+        </div>
+      </div>
+      <div
+        className="absolute w-[200%] scale-50 z-0 aspect-[5/7] bg-contain flex flex-col justify-center items-center p-8 py-10 border-2 drop-shadow-sm"
+        style={{
+          backgroundImage: props.awardOption.cornerShapeContent.filter(
+            (c: any) => c.key == props.awardOption.awardValues.cornerShape
+          )[0].src,
+        }}
+      ></div>
+    </div>
   );
 }
