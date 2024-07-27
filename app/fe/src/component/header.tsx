@@ -13,7 +13,7 @@ export default function Header(props: any) {
 
   return (
     <section
-      className={`top-0 z-50 h-[40px] w-full ${props.isFixed ? "" : ""}`}
+      className={`top-0 z-50 h-[40px] w-full ${props.isFixed ? "" : ""} py-2`}
     >
       <div className="flex h-[40px] w-full select-none flex-row gap-1 justify-between items-center">
         <div className="flex flex-row items-end">
@@ -38,7 +38,7 @@ export default function Header(props: any) {
           </div> */}
           <div className="flex flex-row space-x-2 items-end">
             <IconLogo fill="#000" width={30}></IconLogo>
-            <p className="font-bold text-xl">상장 공장</p>
+            <p className="font-light text-xl">상장 공장</p>
           </div>
         </div>
         <div className="flex h-fit flex-row gap-2">
