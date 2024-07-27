@@ -1,6 +1,6 @@
 # award-maker
 
-<img src="./src/readme/banner_ko.png"/>
+<img src="./src/banner_notion.png"/>
 
 <p align="center">
   <!--
