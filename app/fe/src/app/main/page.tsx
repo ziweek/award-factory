@@ -28,6 +28,7 @@ import { IconFire } from "@/component/common/icons";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/component/footer";
+import Image from "next/image";
 
 export default function Home() {
   const isMobile = useIsMobile();
@@ -162,11 +163,11 @@ export default function Home() {
     },
   ]);
 
-  const queryawardOption = useQuery<any>({
-    queryKey: ["awardOption"],
-    queryFn: () => awardOption,
-    refetchOnMount: true,
-  });
+  // const queryawardOption = useQuery<any>({
+  //   queryKey: ["awardOption"],
+  //   queryFn: () => awardOption,
+  //   refetchOnMount: true,
+  // });
 
   useEffect(() => {
     AOS.init({ once: true, mirror: false });
@@ -409,6 +410,7 @@ export default function Home() {
                           variant={"faded"}
                           className="h-[60px] w-full bg-orange-600 text-[#ffffff] font-bold border-0"
                           fullWidth
+                          isDisabled
                           size={"lg"}
                         >
                           <p>명예의 전당에 제출하기</p>
@@ -420,7 +422,7 @@ export default function Home() {
                           fullWidth
                           size={"lg"}
                           isLoading={false}
-                          isDisabled
+                          // isDisabled
                           onPress={() => {
                             const target = document.getElementById("award");
                             if (!target) {
