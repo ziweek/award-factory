@@ -48,14 +48,14 @@ export default function Home() {
             {/* 소개 텍스트 */}
             <div className="flex w-full flex-col items-center justify-center gap-2">
               <IconLogo width={mobile ? 100 : 120} fill="#000"></IconLogo>
-              <p className="font-bold text-4xl">상장 공장</p>
+              <p className="font-light text-4xl">상장 공장</p>
               <p
                 className={`text-center font-bold ${
                   mobile ? "text-md" : "text-lg"
                 }`}
               >
-                소중한 사람에게 감사한 마음을 {mobile && <br></br>}전달해보는
-                것은 어떨까요?
+                내 손으로 빚어낸 상장을{mobile && <br></br>} 전해보는 것은
+                어떨까요?
               </p>
             </div>
             {/*  */}
@@ -75,7 +75,7 @@ export default function Home() {
                     );
                   }}
                 >
-                  프로젝트 소개자료
+                  서비스 소개자료
                 </Button>
                 <Button
                   className={`font-bold border-black hover:-translate-y-1 ${
@@ -89,7 +89,7 @@ export default function Home() {
                     router.push("/main");
                   }}
                 >
-                  프로젝트 시작하기
+                  서비스 시작하기
                 </Button>
               </div>
             </div>
