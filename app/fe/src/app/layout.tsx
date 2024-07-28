@@ -38,11 +38,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://award-factory.ziweek.duckdns.org",
+    url: "https://award-factory.vercel.app/",
     title: "상장 공장",
     locale: "ko_KR",
     description: "내 손으로 빚어낸 나만의 상장",
-    images: [{ url: `url(/images/banner-seo.png)` }],
+    images: [{ url: `/images/banner-seo.png` }],
     siteName: "award-factory",
   },
 };
