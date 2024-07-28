@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "상장 공장",
     locale: "ko_KR",
     description: "내 손으로 빚어낸 나만의 상장",
-    images: [{ url: `url('/images/thumbnail.png')` }],
+    images: [{ url: `https://award-factory.vercel.app/images/thumbnail.png` }],
     siteName: "award-factory",
   },
 };
@@ -123,7 +123,10 @@ export default function RootLayout({
           name="twitter:description"
           content="내 손으로 빚어낸 나만의 상장"
         />
-        <meta name="twitter:image" content={"/images/thumbnail.png"} />
+        <meta
+          name="twitter:image"
+          content={"https://award-factory.vercel.app/images/thumbnail.png"}
+        />
         <meta name="twitter:creator" content="@ziweek" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="상장 공장" />
@@ -133,7 +136,10 @@ export default function RootLayout({
         />
         <meta property="og:site_name" content="상장 공장" />
         <meta property="og:url" content="https://award-factory.vercel.app/" />
-        <meta property="og:image" content={"/images/thumbnail.png"} />
+        <meta
+          property="og:image"
+          content={"https://award-factory.vercel.app/images/thumbnail.png"}
+        />
       </head>
       <Script
         async
