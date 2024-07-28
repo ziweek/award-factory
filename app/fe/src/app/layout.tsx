@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "상장 공장",
     locale: "ko_KR",
     description: "내 손으로 빚어낸 나만의 상장",
-    images: [{ url: `/images/banner-seo.png` }],
+    images: [{ url: `url('/images/thumbnail.png')` }],
     siteName: "award-factory",
   },
 };
@@ -117,17 +117,14 @@ export default function RootLayout({
         />
 
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:url" content="https://yourdomain.com" />
+        <meta name="twitter:url" content="https://award-factory.vercel.app/" />
         <meta name="twitter:title" content="상장 공장" />
         <meta
           name="twitter:description"
           content="내 손으로 빚어낸 나만의 상장"
         />
-        <meta
-          name="twitter:image"
-          content="https://yourdomain.com/icons/android-chrome-192x192.png"
-        />
-        <meta name="twitter:creator" content="@DavidWShadow" />
+        <meta name="twitter:image" content={"/images/thumbnail.png"} />
+        <meta name="twitter:creator" content="@ziweek" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="상장 공장" />
         <meta
@@ -135,11 +132,8 @@ export default function RootLayout({
           content="내 손으로 빚어낸 나만의 상장"
         />
         <meta property="og:site_name" content="상장 공장" />
-        <meta property="og:url" content="https://yourdomain.com" />
-        <meta
-          property="og:image"
-          content="https://yourdomain.com/icons/apple-touch-icon.png"
-        />
+        <meta property="og:url" content="https://award-factory.vercel.app/" />
+        <meta property="og:image" content={"/images/thumbnail.png"} />
       </head>
       <Script
         async
