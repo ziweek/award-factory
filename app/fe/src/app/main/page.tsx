@@ -22,13 +22,11 @@ import {
 } from "@nextui-org/react";
 import { getLocalTimeZone, today } from "@internationalized/date";
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import html2canvas from "html2canvas";
 import { IconFire } from "@/component/common/icons";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/component/footer";
-import Image from "next/image";
 
 export default function Home() {
   const isMobile = useIsMobile();
