@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import AppProvider from "./provider";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const nanumSquareNeo = localFont({
   src: [
@@ -34,6 +35,15 @@ export const metadata: Metadata = {
   icons: {
     icon: "/images/logo-icon.png",
   },
+  openGraph: {
+    type: "website",
+    url: "https://award-factory.ziweek.duckdns.org",
+    title: "상장 공장",
+    locale: "ko_KR",
+    description: "내 손으로 빚어낸 나만의 상장",
+    images: [{ url: `url(/images/banner-seo.png)` }],
+    siteName: "award-factory",
+  },
 };
 
 export default function RootLayout({
@@ -52,7 +62,7 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
         />
-        <meta name="application-name" content="" />
+        <meta name="application-name" content="상장 공장" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="상장 공장" />
@@ -133,6 +143,7 @@ export default function RootLayout({
       <body>
         <AppProvider>{children}</AppProvider>
       </body>
+      <GoogleAnalytics gaId="59GWTQ0MXK" />
     </html>
   );
 }
