@@ -9,6 +9,7 @@ import "aos/dist/aos.css";
 import { useIsMobile } from "@/hook/useMediaQuery";
 import { IconLogo } from "@/component/common/icons";
 import Footer from "@/component/footer";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -34,15 +35,28 @@ export default function Home() {
 
   return (
     <>
-      <section className="mx-auto h-full min-h-full w-screen select-none overflow-x-clip bg-white">
+      <section
+        className={`${
+          mobile ? "" : "grid grid-cols-2"
+        } mx-auto h-full min-h-full w-screen select-none overflow-x-clip`}
+        style={{ gridTemplateColumns: `1fr minmax(400px, 500px)` }}
+      >
+        {!mobile && (
+          <div
+            className="flex flex-col items-center justify-center w-full h-full bg-cover bg-center bg-blend-lighten bg-white/60"
+            style={{ backgroundImage: `url(/images/background-award.png)` }}
+          ></div>
+        )}
         {/* 1. 프로젝트 소개  */}
         <div
-          className={`mx-auto flex h-screen flex-col items-center justify-center`}
-          style={
-            {
-              // backgroundImage: `url('/images/background-pattern.jpg')`,
-            }
-          }
+          className={`${
+            mobile ? "bg-center bg-cover bg-blend-lighten bg-white/85" : ""
+          } mx-auto flex h-screen flex-col items-center justify-center min-w-[300px]`}
+          style={{
+            backgroundImage: mobile
+              ? `url('/images/background-award.png')`
+              : "",
+          }}
         >
           <div className="z-20 flex w-full flex-col items-center justify-center space-y-8">
             {/* 소개 텍스트 */}
