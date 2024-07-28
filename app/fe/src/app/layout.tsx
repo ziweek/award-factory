@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import AppProvider from "./provider";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 const nanumSquareNeo = localFont({
   src: [
@@ -140,10 +141,27 @@ export default function RootLayout({
           content="https://yourdomain.com/icons/apple-touch-icon.png"
         />
       </head>
+      <Script
+        async
+        src={`https://www.googletagmanager.com/gtag/js
+				?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+      />
+      <Script
+        id="google-analytics"
+        dangerouslySetInnerHTML={{
+          __html: `
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+		`,
+        }}
+      />
       <body>
         <AppProvider>{children}</AppProvider>
       </body>
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
+      {/* <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} /> */}
     </html>
   );
 }
