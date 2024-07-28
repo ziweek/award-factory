@@ -53,7 +53,9 @@ export default function Home() {
             mobile ? "bg-center bg-cover bg-blend-lighten bg-white/85" : ""
           } mx-auto flex h-screen flex-col items-center justify-center min-w-[300px]`}
           style={{
-            backgroundImage: mobile ? `url('/images/thumbnail.png')` : "",
+            backgroundImage: mobile
+              ? `url('/images/background-award.png')`
+              : "",
           }}
         >
           <div className="z-20 flex w-full flex-col items-center justify-center space-y-8">

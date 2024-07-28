@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "상장 공장",
     locale: "ko_KR",
     description: "내 손으로 빚어낸 나만의 상장",
-    images: [{ url: `/images/banner-seo.png` }],
+    images: [{ url: `/images/thumbnail.png` }],
     siteName: "award-factory",
   },
 };
