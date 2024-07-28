@@ -4,7 +4,6 @@ const withPWA = require("next-pwa")({
   dest: "public",
   disable: true,
 });
-// const withVideos = require("next-videos");
 const nextConfig = {
   webpack: (config) => {
     config.resolve.alias.canvas = false;
