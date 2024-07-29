@@ -1,4 +1,4 @@
-# award-maker
+# award-factory
 
 <img src="./src/banner_notion.png"/>
 
@@ -17,7 +17,7 @@
   </a>
   <br/>
   <br/>
-  <strong>상장 제조기</strong>
+  <strong>상장 공장. 내 손으로 빚어내는 나만의 상장</strong>
   <br/>
   <br/>
 
@@ -49,8 +49,7 @@
 
 > [!NOTE]
 >
-> - 본 아이디어는, 제주특별자치도에서 주최하는 [2023년도 제주 위성데이터 활용 경진대회](https://aifactory.space/task/2700/overview)에 출품하여 대상(제주특별자치도지사상)을 수상한 프로젝트입니다.
-> - 본 아이디어는, 제주 위성데이터를 활용하고 컴퓨터 비전의 객체 인식 AI 기술을 적용하여, 제주 지역에서 장기적으로 주차되거나 방치되어 있는 차량을 탐지하고, 해당 정보를 유관 기관이 통합하여 관리할 수 있는 지능형 플랫폼을 연구 및 개발하는 것입니다.
+> - 본 아이디어는, 누구나 간편하게 3분 안에 상장을 제작하여 순직간에 누군가를 칭찬할 수 있는 서비스를 개발하는 것입니다.
 
 https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-7d2adbb045ec
 
@@ -58,17 +57,17 @@ https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-
   <tr>
      <td>
       <p align='center'>
-        초고상도 이미지 개선 모델
+       상장 만들기 
       </p>
     </td>
     <td>
       <p align='center'>
-        소형 객체 인식 모델
+        다른 서비스에 공유하기 
       </p>
     </td>
     <td>
       <p align='center'>
-        프로덕트 웹사이트
+       명예의 전당
       </p>
     </td>
   </tr>
@@ -98,7 +97,6 @@ https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-
 >
 > - [x] 기획안 작성 완료 :ok_hand:
 > - [x] 프론트엔드 개발 완료 :ok_hand:
-> - [x] 벡엔드 및 데이터베이스 개발 완료 :ok_hand:
 > - [x] 소개자료 및 시연영상 제작 완료 :ok_hand:
 > </details>
 
@@ -124,9 +122,7 @@ https://github.com/ziweek/desirable-sea/assets/99459331/4a7edb47-754c-47fd-8dab-
 
 <details>
  <summary><b>핵심기능</b></summary><br/>
-
-### 1. 초고해상도 이미지 개선 딥러닝 모델
-
+  
  <table>
   <tr>
      <td colspan=2>
@@ -217,7 +213,7 @@ https://github.com/ziweek/desirable-sea/assets/99459331/2212ce20-bb1b-42f8-a97c-
 <br/>
 
 
-# 3. 팀원
+# 3. 기여자
 
 <table>
   <tr>
@@ -230,11 +226,6 @@ https://github.com/ziweek/desirable-sea/assets/99459331/2212ce20-bb1b-42f8-a97c-
         <a href='https://github.com/ziweek' target="_blank">
           <img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=Github&logoColor=white"/>
         </a>
-      </p>
-    </td>
-    <td>
-      <p align='left'>
-        이 프로젝트에 리더로 참여하여 먼저, 장기 방치 차량 문제에 직면해 이를 관리 하기 위한 지능형 플랫폼의 필요성을 깨닫게 되었습니다. Next.js, Google Map API, 그리고 FastAPI 등의 현대적인 기술들을 통합함으로써 우리의 솔루션은 효율적이고 사용자 친화적인 장기 방치 차량 관리를 실현하며, 위성데이터를 활용한 지능형 플랫폼의 발전에 일조하는 데 자부심을 느낄 수 있었습니다. 이 플랫폼은 제주의 차량문제를 혁신하고 미래 도시 계획에 기여하는 중요한 발판으로서의 역할을 할 것으로 기대됩니다.
       </p>
     </td>
   </tr>
