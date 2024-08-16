@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import AppProvider from "./provider";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 
 const nanumSquareNeo = localFont({

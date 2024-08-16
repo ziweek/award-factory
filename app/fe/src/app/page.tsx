@@ -45,6 +45,7 @@ export default function Home() {
           <div
             className="flex flex-col items-center justify-center w-full h-full bg-cover bg-center bg-blend-lighten bg-white/60"
             style={{ backgroundImage: `url(/images/background-award.png)` }}
+            aria-label="상장 공장 배너"
           ></div>
         )}
         {/* 1. 프로젝트 소개  */}
