@@ -19,6 +19,9 @@ import {
   DropdownMenu,
   DropdownItem,
   SharedSelection,
+  Accordion,
+  AccordionItem,
+  Textarea,
 } from "@nextui-org/react";
 import { getLocalTimeZone, today } from "@internationalized/date";
 import { useEffect, useState } from "react";
@@ -27,6 +30,7 @@ import { IconFire } from "@/component/common/icons";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/component/footer";
+import Image from "next/image";
 
 export default function Home() {
   const isMobile = useIsMobile();
@@ -199,6 +203,7 @@ export default function Home() {
                 radius={"none"}
                 classNames={{ cursor: "bg-[#E6E6E7]" }}
               >
+                {/* <>상장 만들기</> */}
                 <Tab
                   key="상장 만들기"
                   title={
@@ -261,8 +266,81 @@ export default function Home() {
                           }}
                         ></div>
                       </div> */}
+                      <div className="bg-gradient-to-br from-[#0081FF] to-[#50B1FF] p-1 w-fit h-fit rounded-xl">
+                        <Accordion
+                          variant={"light"}
+                          className="bg-white rounded-lg"
+                        >
+                          <AccordionItem
+                            key="1"
+                            aria-label="Gemma 모델 활용하기"
+                            startContent={
+                              <Image
+                                src={"/logo/logo-gemma.png"}
+                                width={100}
+                                height={100}
+                                alt="logo-gemma.png"
+                                className="w-[60px]"
+                              ></Image>
+                            }
+                            title="Gemma 모델 활용하기"
+                            subtitle="Google Gemma 모델로 아이디어를 발굴해보는 것은 어떨까요?"
+                            classNames={{
+                              subtitle: "break-keep",
+                            }}
+                          >
+                            <div className="flex space-y-4 flex-col w-full h-fit py-2">
+                              <Textarea
+                                radius={"sm"}
+                                // minRows={3}
+                                // maxRows={3}
+                                variant={"flat"}
+                                size={"lg"}
+                                classNames={{
+                                  inputWrapper:
+                                    "bg-gradient-to-br from-[#0081FF10] to-[#50B1FF10]",
+                                }}
+                              ></Textarea>
+                              <p className="text-center w-full text-xs">
+                                🚧 아직 개발 중!
+                              </p>
+                              <Button
+                                radius={"sm"}
+                                variant={"faded"}
+                                className="h-[60px] w-full bg-gradient-to-br from-[#0081FF] to-[#50B1FF] text-white font-bold border-0"
+                                fullWidth
+                                size={"lg"}
+                                isLoading={false}
+                                onPress={() => {
+                                  // const target =
+                                  //   document.getElementById("award");
+                                  // if (!target) {
+                                  //   return alert("저장에 실패");
+                                  // }
+                                  // html2canvas(target, {
+                                  //   //   width: 2480,
+                                  //   //   height: 3508,
+                                  //   scale: 3,
+                                  // }).then((canvas) => {
+                                  //   const link = document.createElement("a");
+                                  //   document.body.appendChild(link);
+                                  //   link.href = canvas.toDataURL("image/png");
+                                  //   link.download = "award.png"; // 다운로드 이미지 파일 이름
+                                  //   link.click();
+                                  //   document.body.removeChild(link);
+                                  // });
+                                }}
+                              >
+                                <p>Gemma, 정답을 알려줘!</p>
+                              </Button>
+                            </div>
+                          </AccordionItem>
+                        </Accordion>
+                      </div>
+                      {/*  */}
                       <AwardVertical awardOption={awardOption}></AwardVertical>
-                      <div className="w-full space-y-2">
+                      {/*  */}
+                      <div className="w-full space-y-2 h-fit">
                         <p>상장 테두리 양식</p>
                         <Dropdown>
                           <DropdownTrigger>
@@ -406,16 +484,6 @@ export default function Home() {
                         <Button
                           radius={"none"}
                           variant={"faded"}
-                          className="h-[60px] w-full bg-orange-600 text-[#ffffff] font-bold border-0"
-                          fullWidth
-                          isDisabled
-                          size={"lg"}
-                        >
-                          <p>명예의 전당에 제출하기</p>
-                        </Button>
-                        <Button
-                          radius={"none"}
-                          variant={"faded"}
                           className="h-[60px] w-full bg-[#FEE500] text-[#000000] font-bold border-0"
                           fullWidth
                           size={"lg"}
@@ -445,7 +513,8 @@ export default function Home() {
                               );
                               await navigator
                                 .share?.({
-                                  title: "상장 공장",
+                                  title:
+                                    "🏭 상장 공장에서 당신의 상장이 도착했어요!",
                                   text: "내 손으로 빚은 나만의 상장",
                                   files: [file],
                                 })
@@ -457,10 +526,21 @@ export default function Home() {
                         >
                           <p>다른 서비스에 공유하기</p>
                         </Button>
+                        <Button
+                          radius={"none"}
+                          variant={"faded"}
+                          className="h-[60px] w-full bg-orange-600 text-[#ffffff] font-bold border-0"
+                          fullWidth
+                          isDisabled
+                          size={"lg"}
+                        >
+                          <p>명예의 전당에 제출하기</p>
+                        </Button>
                       </div>
                     </div>
                   </div>
                 </Tab>
+                {/* <>명예의 전당</> */}
                 <Tab
                   key="명예의 전당"
                   title={
@@ -571,6 +651,7 @@ export default function Home() {
           subtitle={"저와 소통하실 분은 아래에서 만나요!"}
         ></Footer>
       </section>
+      {/* <>튜토리얼</> */}
       <Modal isOpen={modalOption.isTutorialOpen} placement={"bottom"}>
         <ModalContent className={mobile ? "pb-6" : ""}>
           {(onClose) => (
