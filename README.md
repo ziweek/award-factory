@@ -21,14 +21,18 @@
   <br/>
   <br/>
 
+  <a href='https://paperswithcode.com/paper/gemma-open-models-based-on-gemini-research'>
+    <img src="https://img.shields.io/badge/Paperswithcode-Gemma:%20Open%20Models%20Based on%20Gemini%20Research%20and%20Technology-25c2a0?style=flat-square"/>
+  </a>
+  <br/>
+  <br/>
+
   <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/>
   <img src="https://img.shields.io/badge/PWA-5A0FC8?style=flat-square&logo=pwa&logoColor=white"/> 
   <br/>
-  <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
-  <br/>
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Gemma-4285F4?style=flat-square&logo=google&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Transformer-4285F4?style=flat-square&logo=google&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white"/>
 </p>
 <br/>
 <br/>
@@ -38,7 +42,10 @@
   <br/>
   <br/>
   <a href='https://desirable-sea.vercel.app/'>
-    <img src="https://img.shields.io/badge/프로덕트-Vercel-000000?style=flat-square"/>
+    <img src="https://img.shields.io/badge/Website-Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/>
+  </a>
+    <a href='https://desirable-sea.vercel.app/'>
+      <img src="https://img.shields.io/badge/Model-Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=white"/>
   </a>
 </p>
 
@@ -215,18 +222,10 @@ https://github.com/ziweek/desirable-sea/assets/99459331/2212ce20-bb1b-42f8-a97c-
 
 # 3. 기여자
 
-<table>
-  <tr>
-    <td width=80>
-      <p align='center'>김지욱</p>
-    </td>
-    <td width=1=150>
-      <p align='center'>
-        <img src="https://drive.google.com/uc?export=view&id=1459-NPm4sC50nrQRdjTpmpz_eKunIi04" width=400/>
-        <a href='https://github.com/ziweek' target="_blank">
-          <img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=Github&logoColor=white"/>
-        </a>
-      </p>
-    </td>
-  </tr>
-</table>
+<!--
+https://contrib.rocks/preview?repo=angular%2Fangular-ja
+-->
+
+<a href="https://github.com/ziweek/award-factory/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ziweek/award-factory" />
+</a>
