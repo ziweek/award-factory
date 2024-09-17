@@ -6,6 +6,7 @@
   <!--
   <strong>🏆 2023 제주특별자치도 도지사상 수상 작품 🏆</strong>
   -->
+  
   <br/>
   <br/>
   <a href='https://github.com/ziweek/desirable-sea/blob/main/README.md'>
@@ -41,10 +42,10 @@
   <strong>아래의 뱃지에서 프로토타입을 확인해보세요.<strong>
   <br/>
   <br/>
-  <a href='https://desirable-sea.vercel.app/'>
+  <a href='https://vercel.com/ziweeks-projects/award-factory'>
     <img src="https://img.shields.io/badge/Website-Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/>
   </a>
-    <a href='https://desirable-sea.vercel.app/'>
+    <a href='https://huggingface.co/ziweek/gemma-2b-it-award-factory-ko-v1'>
       <img src="https://img.shields.io/badge/Model-Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=white"/>
   </a>
 </p>
