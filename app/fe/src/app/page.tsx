@@ -20,6 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     console.log(window.navigator.language);
+    console.log(window.navigator.languages);
     const checkResize = () => {
       if (isMobile) {
         setMobile(true);
