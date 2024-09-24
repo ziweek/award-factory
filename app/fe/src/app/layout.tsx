@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import AppProvider from "./provider";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import Script from "next/script";
 
 const nanumSquareNeo = localFont({
@@ -47,13 +48,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="ko" className={`${nanumSquareNeo.className}`}>
+    <html className={`${nanumSquareNeo.className}`} lang={locale}>
       <head>
         <meta
           name="viewport"
@@ -159,9 +163,10 @@ export default function RootLayout({
         }}
       />
       <body>
-        <AppProvider>{children}</AppProvider>
+        <NextIntlClientProvider messages={messages}>
+          <AppProvider>{children}</AppProvider>
+        </NextIntlClientProvider>
       </body>
-      {/* <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} /> */}
     </html>
   );
 }

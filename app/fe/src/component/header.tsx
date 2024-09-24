@@ -3,6 +3,7 @@
 import { Button } from "@nextui-org/react";
 import { IconLogo, IconSetting } from "./common/icons";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 
 export default function Header(props: any) {
   const queryButtonOption = useQuery<any>({
@@ -10,6 +11,7 @@ export default function Header(props: any) {
     queryFn: () => {},
     refetchOnMount: true,
   });
+  const th = useTranslations("Header");
 
   return (
     <section
@@ -38,7 +40,7 @@ export default function Header(props: any) {
           </div> */}
           <div className="flex flex-row space-x-2 items-end">
             <IconLogo fill="#000" width={30}></IconLogo>
-            <p className="font-light text-xl">상장 공장</p>
+            <p className="font-light text-xl">{th("title")}</p>
           </div>
         </div>
         <div className="flex h-fit flex-row gap-2">

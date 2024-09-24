@@ -9,14 +9,17 @@ import "aos/dist/aos.css";
 import { useIsMobile } from "@/hook/useMediaQuery";
 import { IconLogo } from "@/component/common/icons";
 import Footer from "@/component/footer";
-import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
   const router = useRouter();
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
+  const t = useTranslations("Home");
+  const tf = useTranslations("Footer");
 
   useEffect(() => {
+    console.log(window.navigator.language);
     const checkResize = () => {
       if (isMobile) {
         setMobile(true);
@@ -62,14 +65,14 @@ export default function Home() {
             {/* 소개 텍스트 */}
             <div className="flex w-full flex-col items-center justify-center gap-2">
               <IconLogo width={mobile ? 100 : 120} fill="#000"></IconLogo>
-              <p className="font-light text-4xl">상장 공장</p>
+              <p className="font-light text-4xl">{t("title")}</p>
               <p
                 className={`text-center font-bold ${
                   mobile ? "text-md" : "text-lg"
                 }`}
               >
-                내 손으로 빚어낸 상장을{mobile && <br></br>} 전해보는 것은
-                어떨까요?
+                {t("subtitle-part-1")}
+                {mobile && <br></br>} {t("subtitle-part-2")}
               </p>
             </div>
             {/*  */}
@@ -89,7 +92,7 @@ export default function Home() {
                     );
                   }}
                 >
-                  서비스 소개자료
+                  {t("button-left")}
                 </Button>
                 <Button
                   className={`font-bold border-black hover:-translate-y-1 ${
@@ -103,7 +106,7 @@ export default function Home() {
                     router.push("/main");
                   }}
                 >
-                  서비스 시작하기
+                  {t("button-right")}
                 </Button>
               </div>
             </div>
@@ -111,8 +114,8 @@ export default function Home() {
           <div className="absolute bottom-0">
             <Footer
               isFixed
-              title={"상장 공장"}
-              subtitle={"저와 소통하실 분은 아래에서 만나요!"}
+              title={t("title")}
+              subtitle={tf("footer-description")}
             ></Footer>
           </div>
         </div>
