@@ -5,6 +5,7 @@ import AppProvider from "./provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import Script from "next/script";
+import { useEffect } from "react";
 
 const nanumSquareNeo = localFont({
   src: [
