@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 
+// import createNextIntlPlugin from "next-intl/plugin";
+
+const createNextIntlPlugin = require("next-intl/plugin");
+
+const withNextIntl = createNextIntlPlugin();
+
 const withPWA = require("next-pwa")({
   dest: "public",
   disable: false,
@@ -23,9 +29,11 @@ const nextConfig = {
   reactStrictMode: false,
   output: "standalone",
 };
+module.exports = withPWA(withNextIntl(nextConfig));
 
-module.exports = {
-  ...withPWA(),
-  // ...withVideos(),
-  ...nextConfig,
-};
+// module.exports = {
+//   ...withPWA(),
+//   ...withNextIntl(),
+//   // ...withVideos(),
+//   ...nextConfig,
+// };

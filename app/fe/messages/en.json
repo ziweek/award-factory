@@ -1,0 +1,38 @@
+{
+  "Home": {
+    "title": "Award Factory",
+    "subtitle": "How about delivering a certificate crafted by my own hands?",
+    "subtitle-part-1": "How about delivering a certificate",
+    "subtitle-part-2": "crafted by my own hands?",
+    "button-left": "Introduction",
+    "button-right": "Get Started"
+  },
+  "Header": {
+    "title": "Award Factory"
+  },
+  "Footer": {
+    "footer-description": "To contact me, let's meet below!"
+  },
+  "Main": {
+    "tab-title-1": "Create Certificate",
+    "tab-title-2": "Hall of Fame",
+    "input-label-1": "Certificate Border Style",
+    "input-label-1-template-1": "Basic Border 1",
+    "input-label-1-template-2": "Basic Border 2",
+    "input-label-1-template-3": "Basic Border 3",
+    "input-label-1-template-4": "No Border",
+    "input-label-2": "Certificate Title",
+    "input-label-3": "Recipient Name",
+    "input-label-4": "Certificate Content",
+    "input-label-5": "Issuer Name",
+    "input-label-6": "Issue Date",
+    "button-bottom-1": "Save as Image",
+    "button-bottom-2": "Share with Other Services",
+    "button-bottom-3": "Submit to Hall of Fame",
+    "example-template": "Basic Border 1",
+    "example-title": "Night Owl Champion Award",
+    "example-winner": "Kim Yageun",
+    "example-description": "We present this award in gratitude for your passion that does not waver even on starry nights.",
+    "example-publisher": "Overtime Elimination Committee"
+  }
+}

@@ -31,68 +31,78 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/component/footer";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function Home() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
   const [selected, setSelected] = useState<any>("부가 기능");
+  const t = useTranslations("Main");
+  const th = useTranslations("Home");
+  const tf = useTranslations("Footer");
+  const locale = useLocale();
   const [awardOption, setAwardOption] = useState<any>({
     awardValues: {
-      cornerShape: "기본 테두리 1",
-      title: "밤샘의 챔피언상",
-      winner: "김야근",
-      description:
-        "별이 빛나는 밤에도 일을 놓지 않는 당신의 열정에 감사를 담아 이 상을 드립니다.",
-      publisher: "야근 근절 위원회",
-      date: `${today(getLocalTimeZone()).year}년 ${
-        today(getLocalTimeZone()).month
-      }월 ${today(getLocalTimeZone()).day}일`,
+      cornerShape: t("example-template"),
+      title: t("example-title"),
+      winner: t("example-winner"),
+      description: t("example-description"),
+      publisher: t("example-publisher"),
+      date:
+        locale == "ko"
+          ? `${today(getLocalTimeZone()).year}년 ${
+              today(getLocalTimeZone()).month
+            }월 ${today(getLocalTimeZone()).day}일`
+          : `${today(getLocalTimeZone()).day} ${new Date(
+              today(getLocalTimeZone()).toString()
+            ).toLocaleString("default", { month: "short" })} ${
+              today(getLocalTimeZone()).year
+            }`,
     },
     awardContent: [
       {
         key: "title",
-        label: "상장 제목",
-        placeholder: "밤샘의 챔피언상",
-        max: 12,
+        label: t("input-label-2"),
+        placeholder: t("example-title"),
+        max: 20,
         isValid: true,
       },
       {
         key: "winner",
-        label: "수상자 이름",
-        placeholder: "김야근",
+        label: t("input-label-3"),
+        placeholder: t("example-winner"),
         max: 10,
         isValid: true,
       },
       {
         key: "description",
-        label: "상장 내용",
-        placeholder:
-          "별이 빛나는 밤에도 일을 놓지 않는 당신의 열정에 감사를 담아 이 상을 드립니다.",
+        label: t("input-label-4"),
+        placeholder: t("example-description"),
         max: 120,
         isValid: true,
       },
       {
         key: "publisher",
-        label: "발행자 이름",
-        placeholder: "야근 근절 위원회",
+        label: t("input-label-5"),
+        placeholder: t("example-publisher"),
         max: 12,
         isValid: true,
       },
     ],
     cornerShapeContent: [
       {
-        key: "기본 테두리 1",
+        key: t("input-label-1-template-1"),
         src: `url(/images/award-template-1.png)`,
       },
       {
-        key: "기본 테두리 2",
+        key: t("input-label-1-template-2"),
         src: `url(/images/award-template-2.png)`,
       },
       {
-        key: "기본 테두리 3",
+        key: t("input-label-1-template-3"),
         src: `url(/images/award-template-3.png)`,
       },
-      { key: "테두리 없음", src: `` },
+      { key: t("input-label-1-template-4"), src: `` },
     ],
   });
   const [modalOption, setModalOption] = useState({
@@ -219,53 +229,12 @@ export default function Home() {
                       size={"lg"}
                       className="max-w-[150px]"
                     >
-                      <p>상장 만들기</p>
+                      <p>{t("tab-title-1")}</p>
                     </Tooltip>
                   }
                 >
                   <div>
                     <div className="flex flex-col gap-8 w-full items-center pt-4">
-                      {/* <div
-                        data-aos="fade-up"
-                        data-aos-duration={300}
-                        id="award"
-                        className="relative w-[300px] aspect-[5/7] flex flex-col justify-center items-center p-8 py-10 h-[420px]"
-                      >
-                        <div
-                          className="relative grid grid-cols-3 grid-rows-4 h-full gap-4 content-between z-10"
-                          style={{
-                            gridTemplateRows: "auto auto 1fr auto",
-                          }}
-                        >
-                          <p className="col-span-3 w-full text-center text-xl font-light">
-                            {awardOption.awardValues.title}
-                          </p>
-                          <p className="col-span-3 w-full text-right text-md font-light">
-                            {awardOption.awardValues.winner}
-                          </p>
-                          <p className="col-span-3 w-full text-center self-center text-lg font-light">
-                            {awardOption.awardValues.description}
-                          </p>
-                          <div className="flex flex-col w-full items-center col-span-3">
-                            <p className="w-full text-center text-md font-light">
-                              {awardOption.awardValues.publisher}
-                            </p>
-                            <p className="w-full text-center text-md font-light">
-                              {awardOption.awardValues.date}
-                            </p>
-                          </div>
-                        </div>
-                        <div
-                          className="absolute w-[200%] scale-50 z-0 aspect-[5/7] bg-contain flex flex-col justify-center items-center p-8 py-10 border-2 drop-shadow-sm"
-                          style={{
-                            backgroundImage:
-                              awardOption.cornerShapeContent.filter(
-                                (c: any) =>
-                                  c.key == awardOption.awardValues.cornerShape
-                              )[0].src,
-                          }}
-                        ></div>
-                      </div> */}
                       <div className="bg-gradient-to-br from-[#0081FF] to-[#50B1FF] p-1 w-fit h-fit rounded-xl">
                         <Accordion
                           variant={"light"}
@@ -289,7 +258,7 @@ export default function Home() {
                               subtitle: "break-keep",
                             }}
                           >
-                            <div className="flex space-y-4 flex-col w-full h-fit py-2">
+                            <div className="flex space-y-4 flex-col w-full h-fit py-1">
                               <Textarea
                                 radius={"sm"}
                                 // minRows={3}
@@ -341,32 +310,15 @@ export default function Home() {
                       <AwardVertical awardOption={awardOption}></AwardVertical>
                       {/*  */}
                       <div className="w-full space-y-2 h-fit">
-                        <p>상장 테두리 양식</p>
+                        <p>{t("input-label-1")}</p>
                         <Dropdown>
                           <DropdownTrigger>
                             <Button
-                              // label={e.label}
-                              // placeholder={e.placeholder}
-                              // labelPlacement={"outside"}
-                              // key={i}
-                              // isClearable
                               radius={"none"}
                               variant={"faded"}
                               className="text-sm w-full"
                               fullWidth
                               size={"lg"}
-                              // description={`${e.label}은 ${e.max}글자까지 입력이 가능합니다.`}
-                              // onChange={(i: any) => {
-                              //   if (i.target.value.length <= [e.max]) {
-                              //     setAwardOption({
-                              //       ...awardOption,
-                              //       awardValues: {
-                              //         ...awardOption.awardValues,
-                              //         [e.key]: i.target.value,
-                              //       },
-                              //     });
-                              //   }
-                              // }}
                             >
                               {awardOption.awardValues.cornerShape}
                             </Button>
@@ -433,25 +385,28 @@ export default function Home() {
                           </Input>
                         );
                       })}
-                      <DatePicker
-                        label={"발행 일자"}
-                        labelPlacement={"outside"}
-                        radius={"none"}
-                        variant={"faded"}
-                        className="text-sm w-full"
-                        fullWidth
-                        size={"lg"}
-                        defaultValue={today(getLocalTimeZone())}
-                        onChange={(e: any) => {
-                          setAwardOption({
-                            ...awardOption,
-                            awardValues: {
-                              ...awardOption.awardValues,
-                              date: `${e.year}년 ${e.month}월 ${e.day}일`,
-                            },
-                          });
-                        }}
-                      ></DatePicker>
+                      <div className="w-full space-y-2 h-fit">
+                        <p>{t("input-label-6")}</p>
+                        <DatePicker
+                          // label={t("input-label-6")}
+                          // labelPlacement={"outside"}
+                          radius={"none"}
+                          variant={"faded"}
+                          className="text-sm w-full"
+                          fullWidth
+                          size={"lg"}
+                          defaultValue={today(getLocalTimeZone())}
+                          onChange={(e: any) => {
+                            setAwardOption({
+                              ...awardOption,
+                              awardValues: {
+                                ...awardOption.awardValues,
+                                date: `${e.year}년 ${e.month}월 ${e.day}일`,
+                              },
+                            });
+                          }}
+                        ></DatePicker>
+                      </div>
 
                       <div className="flex flex-col space-y-4 w-full py-4">
                         <Button
@@ -479,7 +434,7 @@ export default function Home() {
                             });
                           }}
                         >
-                          <p>이미지로 저장하기</p>
+                          <p>{t("button-bottom-1")}</p>
                         </Button>
                         <Button
                           radius={"none"}
@@ -524,7 +479,7 @@ export default function Home() {
                             navigator.vibrate?.([30, 20, 10]);
                           }}
                         >
-                          <p>다른 서비스에 공유하기</p>
+                          <p>{t("button-bottom-2")}</p>
                         </Button>
                         <Button
                           radius={"none"}
@@ -534,7 +489,7 @@ export default function Home() {
                           isDisabled
                           size={"lg"}
                         >
-                          <p>명예의 전당에 제출하기</p>
+                          <p>{t("button-bottom-3")}</p>
                         </Button>
                       </div>
                     </div>
@@ -556,7 +511,7 @@ export default function Home() {
                       size={"lg"}
                       className="max-w-[150px]"
                     >
-                      <p>명예의 전당</p>
+                      <p>{t("tab-title-2")}</p>
                     </Tooltip>
                   }
                 >
@@ -615,7 +570,7 @@ export default function Home() {
                                     (c: any) =>
                                       c.key ==
                                       awardOption.awardValues.cornerShape
-                                  )[0].src,
+                                  )[0]?.src,
                               }}
                             ></div>
                           </div>
@@ -647,8 +602,8 @@ export default function Home() {
           </div>
         </div>
         <Footer
-          title={"상장 공장"}
-          subtitle={"저와 소통하실 분은 아래에서 만나요!"}
+          title={th("title")}
+          subtitle={tf("footer-description")}
         ></Footer>
       </section>
       {/* <>튜토리얼</> */}
@@ -778,7 +733,7 @@ function AwardHorizontal(props: any) {
         style={{
           backgroundImage: props.awardOption.cornerShapeContent.filter(
             (c: any) => c.key == props.awardOption.awardValues.cornerShape
-          )[0].src,
+          )[0]?.src,
         }}
       ></div>
     </div>
@@ -821,7 +776,7 @@ function AwardVertical(props: any) {
         style={{
           backgroundImage: props.awardOption.cornerShapeContent.filter(
             (c: any) => c.key == props.awardOption.awardValues.cornerShape
-          )[0].src,
+          )[0]?.src,
         }}
       ></div>
     </div>
