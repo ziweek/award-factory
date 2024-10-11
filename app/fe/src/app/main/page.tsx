@@ -37,6 +37,7 @@ export default function Home() {
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
   const [selected, setSelected] = useState<any>("부가 기능");
+  const [gemmaPrompt, setGemmaPrompt] = useState<string>("");
   const t = useTranslations("Main");
   const th = useTranslations("Home");
   const tf = useTranslations("Footer");
@@ -253,7 +254,7 @@ export default function Home() {
                               ></Image>
                             }
                             title="Gemma 모델 활용하기"
-                            subtitle="Google Gemma 모델로 아이디어를 발굴해보는 것은 어떨까요?"
+                            subtitle="Google Gemma와 함께 상장을 만들어볼까요?"
                             classNames={{
                               subtitle: "break-keep",
                             }}
@@ -263,15 +264,20 @@ export default function Home() {
                                 radius={"sm"}
                                 // minRows={3}
                                 // maxRows={3}
+                                placeholder={
+                                  "항상 밤늦게 일하는 동료를 칭찬하기 위한 상장을 만들고 싶어!"
+                                }
                                 variant={"flat"}
                                 size={"lg"}
                                 classNames={{
                                   inputWrapper:
                                     "bg-gradient-to-br from-[#0081FF10] to-[#50B1FF10]",
                                 }}
+                                value={gemmaPrompt}
+                                onValueChange={setGemmaPrompt}
                               ></Textarea>
                               <p className="text-center w-full text-xs">
-                                🚧 아직 개발 중!
+                                🚧 본 서비스는 제한적으로 지원됩니다!
                               </p>
                               <Button
                                 radius={"sm"}
@@ -300,7 +306,7 @@ export default function Home() {
                                   // });
                                 }}
                               >
-                                <p>Gemma, 정답을 알려줘!</p>
+                                <p>Gemma, 상장을 만들어줘!</p>
                               </Button>
                             </div>
                           </AccordionItem>
