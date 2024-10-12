@@ -42,6 +42,7 @@ export default function Home() {
   const th = useTranslations("Home");
   const tf = useTranslations("Footer");
   const locale = useLocale();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [awardOption, setAwardOption] = useState<any>({
     awardValues: {
       cornerShape: t("example-template"),
@@ -198,7 +199,7 @@ export default function Home() {
     <>
       <section className="h-full min-h-screen w-full select-none flex-col justify-start items-center">
         <div
-          className={`flex h-full w-full flex-col items-center justify-start gap-2 pb-6 pt-2 px-4 max-w-[600px] mx-auto`}
+          className={`flex h-full w-full flex-col items-center justify-start gap-2 pb-6 pt-2 px-4 max-w-[500px] mx-auto`}
         >
           <Header></Header>
           <div className="w-full h-full flex flex-col gap-y-8">
@@ -236,10 +237,11 @@ export default function Home() {
                 >
                   <div>
                     <div className="flex flex-col gap-8 w-full items-center pt-4">
-                      <div className="bg-gradient-to-br from-[#0081FF] to-[#50B1FF] p-1 w-fit h-fit rounded-xl">
+                      <div className="bg-gradient-to-br from-[#0081FF] to-[#50B1FF] p-1 w-fit h-fit rounded-xl w-full">
                         <Accordion
                           variant={"light"}
-                          className="bg-white rounded-lg"
+                          className="bg-white rounded-lg w-full"
+                          fullWidth
                         >
                           <AccordionItem
                             key="1"
@@ -285,8 +287,12 @@ export default function Home() {
                                 className="h-[60px] w-full bg-gradient-to-br from-[#0081FF] to-[#50B1FF] text-white font-bold border-0"
                                 fullWidth
                                 size={"lg"}
-                                isLoading={false}
-                                onPress={() => {
+                                isLoading={isLoading}
+                                onPress={async () => {
+                                  await setIsLoading(true);
+                                  await setInterval(() => {
+                                    setIsLoading(false);
+                                  }, 5000);
                                   // const target =
                                   //   document.getElementById("award");
                                   // if (!target) {

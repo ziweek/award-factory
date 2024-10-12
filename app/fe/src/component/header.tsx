@@ -4,6 +4,7 @@ import { Button } from "@nextui-org/react";
 import { IconLogo, IconSetting } from "./common/icons";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 export default function Header(props: any) {
   const queryButtonOption = useQuery<any>({
@@ -12,6 +13,7 @@ export default function Header(props: any) {
     refetchOnMount: true,
   });
   const th = useTranslations("Header");
+  const rounter = useRouter();
 
   return (
     <section
@@ -38,7 +40,12 @@ export default function Header(props: any) {
               ></LottieSecurityCheck>
             )}
           </div> */}
-          <div className="flex flex-row space-x-2 items-end">
+          <div
+            className="flex flex-row space-x-2 items-end"
+            onClick={() => {
+              rounter.push("/");
+            }}
+          >
             <IconLogo fill="#000" width={30}></IconLogo>
             <p className="font-light text-xl">{th("title")}</p>
           </div>
