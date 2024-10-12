@@ -57,7 +57,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html className={`${nanumSquareNeo.className}`} lang={"ko"}>
+    <html className={`${nanumSquareNeo.className}`} lang={locale}>
       <head>
         <meta
           name="viewport"
