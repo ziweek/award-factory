@@ -5,7 +5,6 @@ import AppProvider from "./provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import Script from "next/script";
-import { useEffect } from "react";
 
 const nanumSquareNeo = localFont({
   src: [
@@ -58,7 +57,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html className={`${nanumSquareNeo.className}`} lang={locale}>
+    <html className={`${nanumSquareNeo.className}`} lang={"ko"}>
       <head>
         <meta
           name="viewport"
