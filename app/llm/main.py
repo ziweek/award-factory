@@ -11,7 +11,7 @@ from pprint import pprint
 def return_llm_response(prompt: str):
     start_time = time.time()
     
-    FINETUNE_MODEL = "./models/converted_into_gguf/gemma_2b_it_award_factory_v2.gguf"
+    FINETUNE_MODEL = "./models/gemma_2b_it_award_factory_v2.gguf"
     llm = Llama(model_path=FINETUNE_MODEL, chat_format="chatml")
     chat = llm.create_chat_completion(
         messages=[
