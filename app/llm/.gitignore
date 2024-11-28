@@ -1,0 +1,8 @@
+models/
+
+cache/
+__pycache__/
+
+.env
+output/
+llama.cpp/

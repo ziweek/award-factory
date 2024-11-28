@@ -26,6 +26,18 @@ services:
       - 3000:3000
     networks:
       - award_factory_network
+  #
+  llm:
+    container_name: llm
+    platform: linux/amd64
+    build:
+      context: ./llm/
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - 8081:8081
+    networks:
+      - award_factory_network
 
 networks:
   award_factory_network:

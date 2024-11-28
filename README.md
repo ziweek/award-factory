@@ -1,5 +1,37 @@
 # award-factory
 
+```
+$ python ./llama.cpp/convert_hf_to_gguf.py ./gemma-2b-it-award-factory-v2 --outfile ./gemma-2b-it-award-factory-v2.gguf
+
+
+INFO:gguf.vocab:Setting special token type eot to 107
+INFO:hf-to-gguf:Set model quantization version
+INFO:gguf.gguf_writer:Writing the following files:
+INFO:gguf.gguf_writer:gemma-2b-it-award-factory-v2.gguf: n_tensors = 164, total_size = 5.0G
+Writing: 100%|██████████████████████████████████████████████████████████████████| 5.01G/5.01G [02:02<00:00, 40.9Mbyte/s]
+INFO:hf-to-gguf:Model successfully exported to gemma-2b-it-award-factory-v2.gguf
+```
+
+```
+$ llama.cpp/llama-quantize gguf_model/gemma-2b-it-award-factory-v2.gguf gguf_model/gemma-2b-it-award-factory-v2.gguf-Q5_K_M.gguf Q5_K_M
+
+...
+llama_model_quantize_internal: model size  =  4780.29 MB
+llama_model_quantize_internal: quant size  =  1748.67 MB
+
+main: quantize time = 17999.81 ms
+main:    total time = 17999.81 ms
+```
+
+```
+$ ollama list
+
+NAME                    ID              SIZE      MODIFIED
+award-factory:q5        8df06172b64b    1.8 GB    19 seconds ago
+award-factory:latest    ae186115cc83    5.0 GB    28 minutes ago
+```
+
+
 <img src="./src/banner_notion.png"/>
 
 <p align="center">
