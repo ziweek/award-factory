@@ -32,6 +32,8 @@ import "aos/dist/aos.css";
 import Footer from "@/component/footer";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
+import axios from "axios";
+import { json } from "stream/consumers";
 
 export default function Home() {
   const isMobile = useIsMobile();
@@ -193,7 +195,7 @@ export default function Home() {
       }
     };
     checkResize();
-  }, [isMobile]);
+  }, [isMobile, awardOption]);
 
   return (
     <>
@@ -289,27 +291,57 @@ export default function Home() {
                                 size={"lg"}
                                 isLoading={isLoading}
                                 onPress={async () => {
+                                  var context_parsed: any = "";
                                   await setIsLoading(true);
-                                  await setInterval(() => {
-                                    setIsLoading(false);
-                                  }, 5000);
-                                  // const target =
-                                  //   document.getElementById("award");
-                                  // if (!target) {
-                                  //   return alert("저장에 실패");
-                                  // }
-                                  // html2canvas(target, {
-                                  //   //   width: 2480,
-                                  //   //   height: 3508,
-                                  //   scale: 3,
-                                  // }).then((canvas) => {
-                                  //   const link = document.createElement("a");
-                                  //   document.body.appendChild(link);
-                                  //   link.href = canvas.toDataURL("image/png");
-                                  //   link.download = "award.png"; // 다운로드 이미지 파일 이름
-                                  //   link.click();
-                                  //   document.body.removeChild(link);
-                                  // });
+                                  await axios
+                                    .post("http://localhost:8080/prompt", {
+                                      prompt: gemmaPrompt,
+                                    })
+                                    .then(async function (response: any) {
+                                      // console.log(response);
+                                      const context =
+                                        response["data"]["choices"][0][
+                                          "message"
+                                        ]["content"];
+                                      context_parsed = JSON.parse(context);
+                                      // console.log(context_parsed);
+                                    })
+                                    .catch(function (error) {
+                                      console.log(error);
+                                    });
+                                  await setAwardOption({
+                                    ...awardOption,
+                                    awardValues: {
+                                      cornerShape: t("example-template"),
+                                      title: context_parsed["title"],
+                                      winner: context_parsed["winner"],
+                                      description:
+                                        context_parsed["description"],
+                                      publisher: context_parsed["publisher"],
+                                      date:
+                                        locale == "ko"
+                                          ? `${
+                                              today(getLocalTimeZone()).year
+                                            }년 ${
+                                              today(getLocalTimeZone()).month
+                                            }월 ${
+                                              today(getLocalTimeZone()).day
+                                            }일`
+                                          : `${
+                                              today(getLocalTimeZone()).day
+                                            } ${new Date(
+                                              today(
+                                                getLocalTimeZone()
+                                              ).toString()
+                                            ).toLocaleString("default", {
+                                              month: "short",
+                                            })} ${
+                                              today(getLocalTimeZone()).year
+                                            }`,
+                                    },
+                                  });
+                                  await setIsLoading(false);
+                                  await console.log(awardOption);
                                 }}
                               >
                                 <p>Gemma, 상장을 만들어줘!</p>

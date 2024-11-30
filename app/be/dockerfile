@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.11
 
 WORKDIR /code
 
@@ -6,4 +6,4 @@ RUN pip install llama-cpp-python "fastapi[standard]"
 
 COPY . /code
 
-CMD ["fastapi", "run", "main.py", "--port", "8081"]
+CMD ["fastapi", "run", "main.py", "--port", "8080"]
