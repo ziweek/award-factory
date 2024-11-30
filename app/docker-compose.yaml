@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   npm:
     container_name: npm
@@ -27,19 +25,19 @@ services:
     networks:
       - award_factory_network
   #
-  llm:
-    container_name: llm
+  be:
+    container_name: be
     platform: linux/amd64
     build:
-      context: ./llm/
+      context: ./be/
       dockerfile: Dockerfile
     restart: on-failure
     ports:
-      - 8081:8081
+      - 8080:8080
     networks:
       - award_factory_network
 
 networks:
   award_factory_network:
-    driver: bridge
-    external: true
+    # driver: bridge
+    # external: false

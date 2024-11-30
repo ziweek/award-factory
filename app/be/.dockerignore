@@ -1,0 +1,9 @@
+models--google--gemma-2b-it
+
+data/
+
+__pycache__/
+
+llama.cpp/
+
+models/gemma_2b_it_award_factory_v2.gguf
