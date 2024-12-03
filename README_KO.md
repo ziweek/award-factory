@@ -74,15 +74,15 @@ https://github.com/user-attachments/assets/2def17e0-46ea-4561-8b50-fc78d595b88b
   </tr>
 </table>
 
-<details open>
- <summary><b>Google Gemma:2B Finetuning</b></summary>
-Implemented prompt engineering and QLoRA-based quantization fine-tuning using the Google/Gemma-2b-it model with PEFT techniques to optimize personalized award text generation tailored to user preferences.
-</details>
+<details open>  
+ <summary><b>Google Gemma:2B 파인튜닝</b></summary>  
+Google/Gemma-2b-it 모델에 PEFT 기법을 활용하여 프롬프트 엔지니어링 및 QLoRA 기반 양자화 파인튜닝을 구현함으로써, 사용자 선호에 맞춘 맞춤형 상장 문구 생성을 최적화했습니다.  
+</details>  
 <br/>
 
-<details open>
- <summary><b>llama-cpp Quantization</b></summary>
-Applied quantization with the Q5_K_M option in llama-cpp, achieving a 63.3% reduction in model size and an 83.4% decrease in inference time without compromising performance, enabling faster and more efficient service.
+<details open>  
+ <summary><b>llama-cpp 양자화</b></summary>  
+llama-cpp에서 Q5_K_M 옵션을 사용하여 양자화를 적용하고, 모델 크기를 63.3% 감소시키며 추론 시간을 83.4% 단축하여 성능 저하 없이 더 빠르고 효율적인 서비스를 가능하게 했습니다.
 
 <br/>
 
@@ -108,10 +108,10 @@ award-factory:latest    ae186115cc83    5.0 GB    28 minutes ago
 </details>
 <br/>
 
-<details open>
-  <summary><b>Docker-compose</b></summary>
-Utilized Docker Compose to containerize the backend and frontend services, ensuring consistency in deployment environments and facilitating scalable and maintainable full-stack web application development.
-</details>
+<details open>  
+ <summary><b>Docker-compose</b></summary>  
+Docker Compose를 활용해 백엔드와 프론트엔드 서비스를 컨테이너화하여 배포 환경의 일관성을 보장하고, 확장 가능하며 유지보수하기 쉬운 풀스택 웹 애플리케이션을 개발했습니다.  
+</details>  
 <br/>
 
 # Contribution
