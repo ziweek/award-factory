@@ -3,35 +3,25 @@
 <img src="./src/banner_notion.png"/>
 
 <p align="center">
-  <!--
-  <strong>🏆 2023 제주특별자치도 도지사상 수상 작품 🏆</strong>
-  -->
-  
+  <br/>
+  <strong>🎓 Showcasing Project, in 2024 Google Machine Learning Bootcamp 🎓</strong>
   <br/>
   <br/>
-  <a href='https://github.com/ziweek/desirable-sea/blob/main/README.md'>
+  <a href='https://github.com/ziweek/award-factory/blob/main/README_KO.md'>
     KOREAN
   </a>
   &nbsp;|&nbsp;
-  <a href='https://github.com/ziweek/desirable-sea/blob/main/README_EN.md'>
+  <a href='https://github.com/ziweek/award-factory/blob/main/README.md'>
     ENGLISH
   </a>
   <br/>
   <br/>
-  <strong>상장 공장. 내 손으로 빚어내는 나만의 상장</strong>
+  <strong>Award-Factory: Awards crafted for you by a hilariously talented generative AI</strong>
   <br/>
   <br/>
-
   <a href='https://paperswithcode.com/paper/gemma-open-models-based-on-gemini-research'>
     <img src="https://img.shields.io/badge/Paperswithcode-Gemma:%20Open%20Models%20Based on%20Gemini%20Research%20and%20Technology-25c2a0?style=flat-square"/>
   </a>
-  <br/>
-  <br/>
-
-  <br/>
-  <img src="https://img.shields.io/badge/Gemma-4285F4?style=flat-square&logo=google&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Transformer-4285F4?style=flat-square&logo=google&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white"/>
   <br/>
   <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/>
   <img src="https://img.shields.io/badge/PWA-5A0FC8?style=flat-square&logo=pwa&logoColor=white"/> 
@@ -42,10 +32,9 @@
   <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white"/>
 </p>
 <br/>
-<br/>
-  
+
 <p align="center">  
-  <strong>아래의 뱃지에서 프로토타입을 확인해보세요.<strong>
+  <strong>Check out prototypes in the badge below<strong>
   <br/>
   <br/>
   <a href='https://award-factory.vercel.app'>
@@ -66,46 +55,14 @@
 
 > [!NOTE]
 >
-> - 본 아이디어는, 누구나 간편하게 3분 안에 상장을 제작하여 순식간에 누군가를 칭찬할 수 있는 서비스를 개발하는 것입니다.
-> - '상장 공장'은 사람들에게 행복을 전달하기 위해 고안된 프로젝트로, 부모님께 특별한 상장을 드리자는 아이디어에서 시작되었습니다. 프로젝트의 지속 가능성을 고려해 프론트엔드만으로 구성되었으며, Google Gemme:2b 모델을 파인튜닝하여 사용자에게 맞춤형 상장 문구를 제공하는 기능을 구현했습니다. 비록 서버 운영 비용 문제로 서비스가 활성화되지는 않았지만, 데모는 Huggingface에서 확인할 수 있습니다.
+> - This project aims to develop a service where anyone can effortlessly create a customized certificate in just a few minutes, making it easy to celebrate and appreciate others.
+> - Award Factory was conceived as a heartwarming project to spread happiness, inspired by the idea of creating special certificates for parents. Built with sustainability in mind, the service integrates front-end components and leverages the fine-tuned Google Gemma:2b model to deliver personalized award texts. While the service is not fully active due to server operation costs, a demo is available on Huggingface.
+> - Advanced technologies like QLoRA quantization and llama-cpp optimizations were employed to reduce model size and improve performance, ensuring an efficient user experience in the future.
 
 https://github.com/user-attachments/assets/2def17e0-46ea-4561-8b50-fc78d595b88b
 
-<table>
-  <tr>
-     <td>
-      <p align='center'>
-       상장 만들기 
-      </p>
-    </td>
-    <td>
-      <p align='center'>
-        다른 서비스에 공유하기 
-      </p>
-    </td>
-    <td>
-      <p align='center'>
-       명예의 전당
-      </p>
-    </td>
-  </tr>
-   <tr>
-    <td style="width:1/3;">
-      <img src="./src/readme/preview-super-image-resolution.png"/>
-    </td>
-    <td style="width:1/3;">
-      <img src="./src/readme/preview-small-object-detection.png"/>
-    </td>
-    <td style="width:1/3;">
-      <img src="./src/readme/preview-product-webpage.png"/>
-    </td>
-  </tr>
-</table>
-<br/>
-
 <br/>
 <br/>
-
 
 # Implementation
 
@@ -119,28 +76,15 @@ https://github.com/user-attachments/assets/2def17e0-46ea-4561-8b50-fc78d595b88b
 
 <details open>
  <summary><b>Google Gemma:2B Finetuning</b></summary>
-HireMePleaseGPT utilizes the Google Gemini API to embed text from resumes and generate responses. It employs “model/text-embedding-004” and “Gemini-1.5-flash,” both available under the free plan, offering sufficient computational performance for a RAG architecture tailored to processing single or double-page PDF documents, such as resumes and cover letters.
+Implemented prompt engineering and QLoRA-based quantization fine-tuning using the Google/Gemma-2b-it model with PEFT techniques to optimize personalized award text generation tailored to user preferences.
 </details>
 <br/>
 
-
 <details open>
  <summary><b>llama-cpp Quantization</b></summary>
-HireMePleaseGPT is build as a RAG architecture, powered by LangChain, Google Gemini API, and FAISS vector database. Text from resume or cover letter is ingested to the FAISS vector database as soon as Google Gemini API embedded it into words or subwords. LangChain 
+Applied quantization with the Q5_K_M option in llama-cpp, achieving a 63.3% reduction in model size and an 83.4% decrease in inference time without compromising performance, enabling faster and more efficient service.
 
 <br/>
-
-```
-$ python ./llama.cpp/convert_hf_to_gguf.py ./gemma-2b-it-award-factory-v2 --outfile ./gemma-2b-it-award-factory-v2.gguf
-
-
-INFO:gguf.vocab:Setting special token type eot to 107
-INFO:hf-to-gguf:Set model quantization version
-INFO:gguf.gguf_writer:Writing the following files:
-INFO:gguf.gguf_writer:gemma-2b-it-award-factory-v2.gguf: n_tensors = 164, total_size = 5.0G
-Writing: 100%|██████████████████████████████████████████████████████████████████| 5.01G/5.01G [02:02<00:00, 40.9Mbyte/s]
-INFO:hf-to-gguf:Model successfully exported to gemma-2b-it-award-factory-v2.gguf
-```
 
 ```
 $ llama.cpp/llama-quantize gguf_model/gemma-2b-it-award-factory-v2.gguf gguf_model/gemma-2b-it-award-factory-v2.gguf-Q5_K_M.gguf Q5_K_M
@@ -160,24 +104,18 @@ NAME                    ID              SIZE      MODIFIED
 award-factory:q5        8df06172b64b    1.8 GB    19 seconds ago
 award-factory:latest    ae186115cc83    5.0 GB    28 minutes ago
 ```
-  
+
 </details>
 <br/>
-
-
 
 <details open>
   <summary><b>Docker-compose</b></summary>
-HireMePleaseGPT is deployed on the Streamlit.io platform. Steamlit framework provided well-built user-friendly UIUX blocks 
+Utilized Docker Compose to containerize the backend and frontend services, ensuring consistency in deployment environments and facilitating scalable and maintainable full-stack web application development.
 </details>
 <br/>
-
-
-
+<br/>
 
 # Contribution
-
--->
 
 <a href="https://github.com/ziweek/award-factory/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=ziweek/award-factory" />
