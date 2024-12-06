@@ -51,7 +51,7 @@
 <br/>
 <br/>
 
-# 1. 개요
+# 1. Introduction
 
 > [!NOTE]
 >
@@ -61,6 +61,24 @@
 
 https://github.com/user-attachments/assets/2def17e0-46ea-4561-8b50-fc78d595b88b
 
+<table>
+    <tr>
+    <td style="width:1/2;">
+      <p align="center">App Design</p>
+    </td>
+    <td style="width:1/2;">
+      <p align="center">Generated Awards</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="width:1/2;">
+      <img src="./src/screenshots.png"/>
+    </td>
+    <td style="width:1/2;">
+      <img src="./src/results.png"/>
+    </td>
+  </tr>
+</table>
 <br/>
 <br/>
 
