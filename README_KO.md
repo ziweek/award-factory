@@ -61,6 +61,24 @@
 
 https://github.com/user-attachments/assets/2def17e0-46ea-4561-8b50-fc78d595b88b
 
+<table>
+    <tr>
+    <td style="width:1/2;">
+      <p align="center">앱 디자인</p>
+    </td>
+    <td style="width:1/2;">
+      <p align="center">생성된 상장</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="width:1/2;">
+      <img src="./src/screenshots.png"/>
+    </td>
+    <td style="width:1/2;">
+      <img src="./src/results.png"/>
+    </td>
+  </tr>
+</table>
 <br/>
 <br/>
 
