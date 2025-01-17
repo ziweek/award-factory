@@ -25,11 +25,11 @@ services:
     networks:
       - award_factory_network
   #
-  be:
-    container_name: be
+  ai:
+    container_name: ai
     platform: linux/amd64
     build:
-      context: ./be/
+      context: ./ai/
       dockerfile: Dockerfile
     restart: on-failure
     ports:
