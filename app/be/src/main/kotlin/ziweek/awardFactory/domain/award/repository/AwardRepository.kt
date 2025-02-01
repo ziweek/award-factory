@@ -9,4 +9,5 @@ interface AwardRepository : MongoRepository<Award, String> {
 
     @Query("{'account.email': ?0}")
     fun findAwardsByEmail(email: String): List<Award>
+
 }

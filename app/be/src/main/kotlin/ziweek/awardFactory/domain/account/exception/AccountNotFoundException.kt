@@ -1,4 +1,7 @@
 package ziweek.awardFactory.domain.account.exception
 
-class AccountNotFoundException {
+class AccountNotFoundException(
+    val field : String,
+    val value : String
+) {
 }

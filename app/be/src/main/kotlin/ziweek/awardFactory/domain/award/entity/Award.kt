@@ -4,17 +4,32 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import org.springframework.data.mongodb.core.mapping.Document
+import ziweek.awardFactory.domain.account.dto.AccountResDto
+import ziweek.awardFactory.domain.award.dto.AwardResDto
 
 @Document
 data class Award (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: String? = null,
-    val awardValues: String,
-    val cornerShape: String,
-    val title: String,
-    val winner: String,
-    val description: String,
-    val publisher: String,
-    val date: String
-)
+    var id: String? = null,
+    var awardValues: String,
+    var cornerShape: String,
+    var title: String,
+    var winner: String,
+    var description: String,
+    var publisher: String,
+    var date: String
+) {
+    fun toResDto(): AwardResDto {
+        return AwardResDto(
+            id = this.id,
+            awardValues = this.awardValues,
+            cornerShape = this.cornerShape,
+            title = this.title,
+            winner = this.winner,
+            description = this.description,
+            publisher = this.publisher,
+            date = this.date
+        )
+    }
+}

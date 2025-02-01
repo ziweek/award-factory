@@ -27,7 +27,6 @@ type Query {
     이메일로 Account 가져오기, 그에 해당하는 모든 awards 가져오기
     """
     getAwardsByEmail(email: String!): [Award]
-
     """
     Id로 award 가져오기
     """
@@ -41,13 +40,13 @@ input CreateAccountInput {
     encodedPassword: String!
 }
 input UpdateAccountInput {
-    id: String
+    id: String!
     name: String
     email: String
     encodedPassword: String
 }
 
-input AwardInput {
+input CreateAwardInput {
     awardValues: String!
     cornerShape: String!
     title: String!
@@ -56,17 +55,29 @@ input AwardInput {
     publisher: String!
     date: String!
 }
+input UpdateAwardInput {
+    id: String
+    awardValues: String
+    cornerShape: String
+    title: String
+    winner: String
+    description: String
+    publisher: String
+    date: String
+}
 
 type Mutation {
     """
-    CREATE Account
+    Account
     """
     createAccount(createAccountInput: CreateAccountInput!): Account
     updateAccount(updateAccountInput: UpdateAccountInput!): Account
     deleteAccount(id: String!): String
 
     """
-    Award 만들기
+    Award
     """
-    createAward(awardInput: AwardInput!): Award
+    createAward(createAwardInput: CreateAwardInput!): Award
+    updateAward(updateAwardInput: UpdateAwardInput!): Award
+    deleteAward(id: String!): String
 }
