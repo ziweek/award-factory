@@ -7,4 +7,6 @@ interface AccountRepository : MongoRepository<Account, String> {
 
     fun findAccountByEmail(email: String) : Account
 
+    fun findAccountById(id: String) : Account
+
 }

@@ -41,10 +41,12 @@ input CreateAccountInput {
     encodedPassword: String!
 }
 input UpdateAccountInput {
-    name: String!
-    email: String!
-    encodedPassword: String!
+    id: String
+    name: String
+    email: String
+    encodedPassword: String
 }
+
 input AwardInput {
     awardValues: String!
     cornerShape: String!
@@ -59,11 +61,9 @@ type Mutation {
     """
     CREATE Account
     """
-    createAccount(accountInput: CreateAccountInput!): Account
-    """
-    UPDATE Account
-    """
-    updateAccount(accountInput: UpdateAccountInput!): Account
+    createAccount(createAccountInput: CreateAccountInput!): Account
+    updateAccount(updateAccountInput: UpdateAccountInput!): Account
+    deleteAccount(id: String!): String
 
     """
     Award 만들기

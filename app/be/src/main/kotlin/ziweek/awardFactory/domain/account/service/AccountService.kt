@@ -20,9 +20,17 @@ class AccountService(
     }
 
     fun updateAccount(updateAccountReqDto: UpdateAccountReqDto): Account {
-        return accountRepository.findById()
+        val account = accountRepository.findAccountById(updateAccountReqDto.id)
+        account.apply {
+            updateAccountReqDto.name?.let { this.name = it }
+            updateAccountReqDto.email?.let { this.email = it }
+            updateAccountReqDto.encodedPassword?.let { this.encodedPassword = it }
+        }
+        return accountRepository.save(account)
     }
 
-    fun deleteAccount()
+    fun deleteAccount(id: String) {
+        accountRepository.deleteById(id)
+    }
 
 }

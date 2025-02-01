@@ -17,7 +17,7 @@ class AccountResolver(
 
     @MutationMapping
     fun createAccount(
-        @Argument(name = "accountInput") createAccountReqDto: CreateAccountReqDto
+        @Argument(name = "createAccountInput") createAccountReqDto: CreateAccountReqDto
     ): AccountResDto {
         return accountService.createAccount(createAccountReqDto).toResDto()
     }
@@ -31,9 +31,16 @@ class AccountResolver(
 
     @MutationMapping
     fun updateAccount(
-        @Argument(name = "UpdateAccountInput") updateAccountReqDto: UpdateAccountReqDto
+        @Argument(name = "updateAccountInput") updateAccountReqDto: UpdateAccountReqDto
     ): AccountResDto {
-        accountService
+        return accountService.updateAccount(updateAccountReqDto).toResDto()
+    }
+
+    @MutationMapping
+    fun deleteAccount(
+        @Argument id: String
+    ) {
+        accountService.deleteAccount(id)
     }
 
 }
