@@ -117,13 +117,13 @@ export default function Home() {
         title: "🤖 AI가 알아서 말아주는 상장",
         desription: (
           <div className="space-y-2 select-none">
-            <p>(1) 먼저 AI 생성 상장 탭을 열어줍니다.</p>
-            <p>(2) 필요한 내용을 자유롭게 서술합니다.</p>
-            <p className="text-xs text-gray-500 py-2 text-center px-4">
+            <p className="text-gray-500 py-2 text-center text-sm px-4 mx-auto break-keep w-2/3">
               💡 AI는 당신의 설명을 바탕으로 창의적이고 개성 있는 상장을
               만들어드립니다.
             </p>
-            <ul className="list-disc pl-5 space-y-2 text-sm">
+            <p>(1) 먼저 AI 생성 상장 탭을 열어줍니다.</p>
+            <p>(2) 필요한 내용을 자유롭게 서술합니다.</p>
+            <ul className="list-disc pl-5 space-y-2">
               <li>
                 매일 야근하는 김야근 씨의 헌신적인 업무 자세를 칭찬하기 위한
                 상장을 만들고 싶어!
@@ -215,7 +215,7 @@ export default function Home() {
     <Modal
       isOpen={isTutorialOpen}
       onOpenChange={onTutorialOpenChange}
-      size="lg"
+      size={"md"}
       placement={"bottom"}
     >
       <ModalContent>
@@ -235,7 +235,7 @@ export default function Home() {
                 }
               </div>
             </ModalBody>
-            <ModalFooter className="flex justify-between">
+            <ModalFooter className="flex justify-between mb-4">
               <Button
                 color="default"
                 variant="light"
@@ -263,10 +263,6 @@ export default function Home() {
                       tutorialContentIndex: prev.tutorialContentIndex + 1,
                     }));
                   } else {
-                    setModalOption((prev) => ({
-                      ...prev,
-                      isTutorialOpen: false,
-                    }));
                     onTutorialClose();
                   }
                 }}
@@ -323,8 +319,7 @@ export default function Home() {
                       content={"상장 만들기 탭"}
                       showArrow
                       isOpen={
-                        modalOption.isTutorialOpen &&
-                        modalOption.tutorialContentIndex == 1
+                        isTutorialOpen && modalOption.tutorialContentIndex == 1
                       }
                       placement={"bottom"}
                       color={"primary"}
@@ -342,7 +337,7 @@ export default function Home() {
                           content={"AI 생성 상장 탭"}
                           showArrow
                           isOpen={
-                            modalOption.isTutorialOpen &&
+                            isTutorialOpen &&
                             modalOption.tutorialContentIndex == 0
                           }
                           placement={"bottom"}
@@ -658,8 +653,7 @@ export default function Home() {
                       content={"명예의 전당 탭"}
                       showArrow
                       isOpen={
-                        modalOption.isTutorialOpen &&
-                        modalOption.tutorialContentIndex == 2
+                        isTutorialOpen && modalOption.tutorialContentIndex == 2
                       }
                       placement={"bottom"}
                       color={"primary"}

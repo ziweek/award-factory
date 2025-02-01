@@ -52,7 +52,7 @@ export default function Home() {
   }, []);
 
   const AuthModal = () => (
-    <Modal isOpen={isAuthOpen} onOpenChange={onAuthOpenChange}>
+    <Modal isOpen={isAuthOpen} onOpenChange={onAuthOpenChange} size={"md"}>
       <ModalContent>
         {(onClose) => (
           <>
@@ -101,15 +101,18 @@ export default function Home() {
                 </Button>
 
                 {!isSignup ? (
-                  <div className="text-center mt-2">
-                    계정이 없으신가요?{" "}
-                    <Link color="primary" onClick={() => setIsSignup(true)}>
+                  <div className="text-center mt-4 space-y-4">
+                    <Link
+                      color="primary"
+                      onClick={() => setIsSignup(true)}
+                      className="cursor-pointer"
+                    >
                       회원가입
                     </Link>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-gray-500 mt-1">
                       또는{" "}
                       <Link
-                        className="cursor-pointer text-gray-500 text-xs underline"
+                        className="cursor-pointer text-gray-500 underline"
                         onClick={() => {
                           router.push("/main");
                         }}
@@ -120,15 +123,18 @@ export default function Home() {
                     </p>
                   </div>
                 ) : (
-                  <div className="text-center mt-2">
-                    이미 계정이 있으신가요?{" "}
-                    <Link color="primary" onClick={() => setIsSignup(false)}>
+                  <div className="text-center mt-4 space-y-4">
+                    <Link
+                      color="primary"
+                      onClick={() => setIsSignup(false)}
+                      className="cursor-pointer"
+                    >
                       로그인
                     </Link>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-gray-500 mt-1">
                       또는{" "}
                       <Link
-                        className="cursor-pointer text-gray-500 text-sm underline"
+                        className="cursor-pointer text-gray-500 underline"
                         onClick={() => {
                           router.push("/main");
                         }}
@@ -141,16 +147,7 @@ export default function Home() {
                 )}
               </div>
             </ModalBody>
-            <ModalFooter>
-              <Button
-                color="danger"
-                variant="light"
-                onPress={onClose}
-                size={"sm"}
-              >
-                닫기
-              </Button>
-            </ModalFooter>
+            <ModalFooter></ModalFooter>
           </>
         )}
       </ModalContent>
