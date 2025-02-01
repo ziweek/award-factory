@@ -5,6 +5,7 @@ import AppProvider from "./provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import Script from "next/script";
+import { ApolloClientProvider } from "@/lib/graphql/provider";
 
 const nanumSquareNeo = localFont({
   src: [
@@ -145,27 +146,29 @@ export default async function RootLayout({
           content={"https://award-factory.vercel.app/images/thumbnail.png"}
         />
       </head>
-      <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js
+      <body className={nanumSquareNeo.className}>
+        <NextIntlClientProvider messages={messages}>
+          <AppProvider>
+            <ApolloClientProvider>{children}</ApolloClientProvider>
+          </AppProvider>
+        </NextIntlClientProvider>
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js
 				?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-      />
-      <Script
-        id="google-analytics"
-        dangerouslySetInnerHTML={{
-          __html: `
+        />
+        <Script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 
 		gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
 		`,
-        }}
-      />
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          <AppProvider>{children}</AppProvider>
-        </NextIntlClientProvider>
+          }}
+        />
       </body>
     </html>
   );
