@@ -33,7 +33,7 @@ import Footer from "@/component/footer";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import axios from "axios";
-import { json } from "stream/consumers";
+import { useDisclosure } from "@nextui-org/react";
 
 export default function Home() {
   const isMobile = useIsMobile();
@@ -114,6 +114,29 @@ export default function Home() {
     tutorialContentIndex: 0,
     tutorialContent: [
       {
+        title: "🤖 AI가 알아서 말아주는 상장",
+        desription: (
+          <div className="space-y-2 select-none">
+            <p>(1) 먼저 AI 생성 상장 탭을 열어줍니다.</p>
+            <p>(2) 필요한 내용을 자유롭게 서술합니다.</p>
+            <p className="text-xs text-gray-500 py-2 text-center px-4">
+              💡 AI는 당신의 설명을 바탕으로 창의적이고 개성 있는 상장을
+              만들어드립니다.
+            </p>
+            <ul className="list-disc pl-5 space-y-2 text-sm">
+              <li>
+                매일 야근하는 김야근 씨의 헌신적인 업무 자세를 칭찬하기 위한
+                상장을 만들고 싶어!
+              </li>
+              <li>
+                고객 서비스 부문에서 최고의 성과를 거둔 박친절 씨를 축하하는
+                특별한 상장을 만들고 싶어!
+              </li>
+            </ul>
+          </div>
+        ),
+      },
+      {
         title: "🏆 상장 만들기",
         desription: (
           <div className="space-y-2 select-none">
@@ -179,11 +202,86 @@ export default function Home() {
     },
   ]);
 
-  // const queryawardOption = useQuery<any>({
-  //   queryKey: ["awardOption"],
-  //   queryFn: () => awardOption,
-  //   refetchOnMount: true,
-  // });
+  const {
+    isOpen: isTutorialOpen,
+    onOpen: onTutorialOpen,
+    onOpenChange: onTutorialOpenChange,
+    onClose: onTutorialClose,
+  } = useDisclosure({
+    defaultOpen: true,
+  });
+
+  const TutorialModal = () => (
+    <Modal
+      isOpen={isTutorialOpen}
+      onOpenChange={onTutorialOpenChange}
+      size="lg"
+      placement={"bottom"}
+    >
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1">
+              {
+                modalOption.tutorialContent[modalOption.tutorialContentIndex]
+                  .title
+              }
+            </ModalHeader>
+            <ModalBody>
+              <div className="space-y-4 text-left px-2">
+                {
+                  modalOption.tutorialContent[modalOption.tutorialContentIndex]
+                    .desription
+                }
+              </div>
+            </ModalBody>
+            <ModalFooter className="flex justify-between">
+              <Button
+                color="default"
+                variant="light"
+                onPress={() => {
+                  if (modalOption.tutorialContentIndex > 0) {
+                    setModalOption((prev) => ({
+                      ...prev,
+                      tutorialContentIndex: prev.tutorialContentIndex - 1,
+                    }));
+                  }
+                }}
+                isDisabled={modalOption.tutorialContentIndex === 0}
+              >
+                이전
+              </Button>
+              <Button
+                color="primary"
+                onPress={() => {
+                  if (
+                    modalOption.tutorialContentIndex <
+                    modalOption.tutorialContent.length - 1
+                  ) {
+                    setModalOption((prev) => ({
+                      ...prev,
+                      tutorialContentIndex: prev.tutorialContentIndex + 1,
+                    }));
+                  } else {
+                    setModalOption((prev) => ({
+                      ...prev,
+                      isTutorialOpen: false,
+                    }));
+                    onTutorialClose();
+                  }
+                }}
+              >
+                {modalOption.tutorialContentIndex ===
+                modalOption.tutorialContent.length - 1
+                  ? "시작하기"
+                  : "다음"}
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
+  );
 
   useEffect(() => {
     AOS.init({ once: true, mirror: false });
@@ -226,7 +324,7 @@ export default function Home() {
                       showArrow
                       isOpen={
                         modalOption.isTutorialOpen &&
-                        modalOption.tutorialContentIndex == 0
+                        modalOption.tutorialContentIndex == 1
                       }
                       placement={"bottom"}
                       color={"primary"}
@@ -240,115 +338,128 @@ export default function Home() {
                   <div>
                     <div className="flex flex-col gap-8 w-full items-center pt-4">
                       <div className="bg-gradient-to-br from-[#0081FF] to-[#50B1FF] p-1 w-fit h-fit rounded-xl w-full">
-                        <Accordion
-                          variant={"light"}
-                          className="bg-white rounded-lg w-full"
-                          fullWidth
+                        <Tooltip
+                          content={"AI 생성 상장 탭"}
+                          showArrow
+                          isOpen={
+                            modalOption.isTutorialOpen &&
+                            modalOption.tutorialContentIndex == 0
+                          }
+                          placement={"bottom"}
+                          color={"primary"}
+                          size={"lg"}
+                          className="max-w-[150px]"
                         >
-                          <AccordionItem
-                            key="1"
-                            aria-label="Gemma 모델 활용하기"
-                            startContent={
-                              <Image
-                                src={"/logo/logo-gemma.png"}
-                                width={100}
-                                height={100}
-                                alt="logo-gemma.png"
-                                className="w-[60px]"
-                              ></Image>
-                            }
-                            title="Gemma 모델 활용하기"
-                            subtitle="Google Gemma와 함께 상장을 만들어볼까요?"
-                            classNames={{
-                              subtitle: "break-keep",
-                            }}
+                          <Accordion
+                            variant={"light"}
+                            className="bg-white rounded-lg w-full"
+                            fullWidth
                           >
-                            <div className="flex space-y-4 flex-col w-full h-fit py-1">
-                              <Textarea
-                                radius={"sm"}
-                                // minRows={3}
-                                // maxRows={3}
-                                placeholder={
-                                  "항상 밤늦게 일하는 동료를 칭찬하기 위한 상장을 만들고 싶어!"
-                                }
-                                variant={"flat"}
-                                size={"lg"}
-                                classNames={{
-                                  inputWrapper:
-                                    "bg-gradient-to-br from-[#0081FF10] to-[#50B1FF10]",
-                                }}
-                                value={gemmaPrompt}
-                                onValueChange={setGemmaPrompt}
-                              ></Textarea>
-                              <p className="text-center w-full text-xs">
-                                🚧 본 서비스는 제한적으로 지원됩니다!
-                              </p>
-                              <Button
-                                radius={"sm"}
-                                variant={"faded"}
-                                className="h-[60px] w-full bg-gradient-to-br from-[#0081FF] to-[#50B1FF] text-white font-bold border-0"
-                                fullWidth
-                                size={"lg"}
-                                isLoading={isLoading}
-                                onPress={async () => {
-                                  var context_parsed: any = "";
-                                  await setIsLoading(true);
-                                  await axios
-                                    .post("http://localhost:8080/prompt", {
-                                      prompt: gemmaPrompt,
-                                    })
-                                    .then(async function (response: any) {
-                                      // console.log(response);
-                                      const context =
-                                        response["data"]["choices"][0][
-                                          "message"
-                                        ]["content"];
-                                      context_parsed = JSON.parse(context);
-                                      // console.log(context_parsed);
-                                    })
-                                    .catch(function (error) {
-                                      console.log(error);
+                            <AccordionItem
+                              key="1"
+                              aria-label="Gemma 모델 활용하기"
+                              startContent={
+                                <Image
+                                  src={"/logo/logo-gemma.png"}
+                                  width={100}
+                                  height={100}
+                                  alt="logo-gemma.png"
+                                  className="w-[60px]"
+                                ></Image>
+                              }
+                              title="Gemma 모델 활용하기"
+                              subtitle="Google Gemma와 함께 상장을 만들어볼까요?"
+                              classNames={{
+                                subtitle: "break-keep",
+                              }}
+                            >
+                              <div className="flex space-y-4 flex-col w-full h-fit py-1">
+                                <Textarea
+                                  radius={"sm"}
+                                  // minRows={3}
+                                  // maxRows={3}
+                                  placeholder={
+                                    "매일 야근하는 김야근 씨의 헌신적인 업무 자세를 칭찬하기 위한 상장을 만들고 싶어!"
+                                  }
+                                  variant={"flat"}
+                                  size={"lg"}
+                                  classNames={{
+                                    inputWrapper:
+                                      "bg-gradient-to-br from-[#0081FF10] to-[#50B1FF10]",
+                                  }}
+                                  value={gemmaPrompt}
+                                  onValueChange={setGemmaPrompt}
+                                ></Textarea>
+                                <p className="text-center w-full text-xs">
+                                  🚧 본 서비스는 제한적으로 지원될테야!
+                                </p>
+                                <Button
+                                  radius={"sm"}
+                                  variant={"faded"}
+                                  className="h-[60px] w-full bg-gradient-to-br from-[#0081FF] to-[#50B1FF] text-white font-bold border-0"
+                                  fullWidth
+                                  size={"lg"}
+                                  isLoading={isLoading}
+                                  onPress={async () => {
+                                    var context_parsed: any = "";
+                                    await setIsLoading(true);
+                                    await axios
+                                      .post("http://localhost:8080/prompt", {
+                                        prompt: gemmaPrompt,
+                                      })
+                                      .then(async function (response: any) {
+                                        // console.log(response);
+                                        const context =
+                                          response["data"]["choices"][0][
+                                            "message"
+                                          ]["content"];
+                                        context_parsed = JSON.parse(context);
+                                        // console.log(context_parsed);
+                                      })
+                                      .catch(function (error) {
+                                        console.log(error);
+                                      });
+                                    await setAwardOption({
+                                      ...awardOption,
+                                      awardValues: {
+                                        cornerShape: t("example-template"),
+                                        title: context_parsed["title"],
+                                        winner: context_parsed["winner"],
+                                        description:
+                                          context_parsed["description"],
+                                        publisher: context_parsed["publisher"],
+                                        date:
+                                          locale == "ko"
+                                            ? `${
+                                                today(getLocalTimeZone()).year
+                                              }년 ${
+                                                today(getLocalTimeZone()).month
+                                              }월 ${
+                                                today(getLocalTimeZone()).day
+                                              }일`
+                                            : `${
+                                                today(getLocalTimeZone()).day
+                                              } ${new Date(
+                                                today(
+                                                  getLocalTimeZone()
+                                                ).toString()
+                                              ).toLocaleString("default", {
+                                                month: "short",
+                                              })} ${
+                                                today(getLocalTimeZone()).year
+                                              }`,
+                                      },
                                     });
-                                  await setAwardOption({
-                                    ...awardOption,
-                                    awardValues: {
-                                      cornerShape: t("example-template"),
-                                      title: context_parsed["title"],
-                                      winner: context_parsed["winner"],
-                                      description:
-                                        context_parsed["description"],
-                                      publisher: context_parsed["publisher"],
-                                      date:
-                                        locale == "ko"
-                                          ? `${
-                                              today(getLocalTimeZone()).year
-                                            }년 ${
-                                              today(getLocalTimeZone()).month
-                                            }월 ${
-                                              today(getLocalTimeZone()).day
-                                            }일`
-                                          : `${
-                                              today(getLocalTimeZone()).day
-                                            } ${new Date(
-                                              today(
-                                                getLocalTimeZone()
-                                              ).toString()
-                                            ).toLocaleString("default", {
-                                              month: "short",
-                                            })} ${
-                                              today(getLocalTimeZone()).year
-                                            }`,
-                                    },
-                                  });
-                                  await setIsLoading(false);
-                                  await console.log(awardOption);
-                                }}
-                              >
-                                <p>Gemma, 상장을 만들어줘!</p>
-                              </Button>
-                            </div>
-                          </AccordionItem>
-                        </Accordion>
+                                    await setIsLoading(false);
+                                    await console.log(awardOption);
+                                  }}
+                                >
+                                  <p>Gemma, 상장을 만들어줘!</p>
+                                </Button>
+                              </div>
+                            </AccordionItem>
+                          </Accordion>
+                        </Tooltip>
                       </div>
                       {/*  */}
                       <AwardVertical awardOption={awardOption}></AwardVertical>
@@ -548,7 +659,7 @@ export default function Home() {
                       showArrow
                       isOpen={
                         modalOption.isTutorialOpen &&
-                        modalOption.tutorialContentIndex == 1
+                        modalOption.tutorialContentIndex == 2
                       }
                       placement={"bottom"}
                       color={"primary"}
@@ -650,92 +761,7 @@ export default function Home() {
           subtitle={tf("footer-description")}
         ></Footer>
       </section>
-      {/* <>튜토리얼</> */}
-      <Modal isOpen={modalOption.isTutorialOpen} placement={"bottom"}>
-        <ModalContent className={mobile ? "pb-6" : ""}>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                {
-                  modalOption.tutorialContent[modalOption.tutorialContentIndex]
-                    .title
-                }
-              </ModalHeader>
-              <ModalBody>
-                {
-                  modalOption.tutorialContent[modalOption.tutorialContentIndex]
-                    .desription
-                }
-              </ModalBody>
-              <ModalFooter className="w-full flex flex-row items-stretch justify-center">
-                <Button
-                  color="danger"
-                  variant="light"
-                  onPress={() => {
-                    if (modalOption.tutorialContentIndex != 0) {
-                      setModalOption({
-                        ...modalOption,
-                        tutorialContentIndex:
-                          modalOption.tutorialContentIndex - 1,
-                      });
-                    }
-                  }}
-                  isDisabled={modalOption.tutorialContentIndex == 0}
-                  size={"sm"}
-                >
-                  이전으로
-                </Button>
-                <Button
-                  color={"default"}
-                  variant={"light"}
-                  onPress={() => {
-                    setModalOption({ ...modalOption, isTutorialOpen: false });
-                  }}
-                  size={"sm"}
-                >
-                  넘어가기
-                </Button>
-                <Button
-                  color="primary"
-                  onPress={() => {
-                    if (
-                      modalOption.tutorialContentIndex !=
-                      modalOption.tutorialContent.length - 1
-                    ) {
-                      setModalOption({
-                        ...modalOption,
-                        tutorialContentIndex:
-                          modalOption.tutorialContentIndex + 1,
-                      });
-                    } else {
-                      setModalOption({
-                        ...modalOption,
-                        isTutorialOpen: false,
-                      });
-                    }
-                  }}
-                  // isDisabled={
-                  //   modalOption.tutorialContentIndex ==
-                  //   modalOption.tutorialContent.length - 1
-                  // }
-                  size={"sm"}
-                  variant={
-                    modalOption.tutorialContentIndex ==
-                    modalOption.tutorialContent.length - 1
-                      ? "solid"
-                      : "light"
-                  }
-                >
-                  {modalOption.tutorialContentIndex !=
-                  modalOption.tutorialContent.length - 1
-                    ? "다음으로"
-                    : "시작하기"}
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+      {TutorialModal()}
     </>
   );
 }
