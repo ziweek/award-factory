@@ -1,6 +1,16 @@
 "use client";
 
-import { Button } from "@nextui-org/react";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+  Link,
+  Input,
+} from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import AOS from "aos";
@@ -15,12 +25,16 @@ export default function Home() {
   const router = useRouter();
   const isMobile = useIsMobile();
   const [mobile, setMobile] = useState<boolean>(false);
+  const {
+    isOpen: isAuthOpen,
+    onOpen: onAuthOpen,
+    onOpenChange: onAuthOpenChange,
+  } = useDisclosure();
+  const [isSignup, setIsSignup] = useState(false);
   const t = useTranslations("Home");
   const tf = useTranslations("Footer");
 
   useEffect(() => {
-    console.log(window.navigator.language);
-    console.log(window.navigator.languages);
     const checkResize = () => {
       if (isMobile) {
         setMobile(true);
@@ -36,6 +50,112 @@ export default function Home() {
     AOS.init();
     return () => {};
   }, []);
+
+  const AuthModal = () => (
+    <Modal isOpen={isAuthOpen} onOpenChange={onAuthOpenChange}>
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1">
+              {isSignup ? "회원가입" : "로그인"}
+            </ModalHeader>
+            <ModalBody>
+              <div className="flex flex-col space-y-4">
+                {isSignup && (
+                  <Input
+                    type="text"
+                    size={"lg"}
+                    placeholder="이름"
+                    // className="w-full p-2 border rounded-md"
+                  />
+                )}
+                <Input
+                  type="email"
+                  size={"lg"}
+                  placeholder="이메일"
+                  // className="w-full p-2 border rounded-md"
+                />
+                <Input
+                  type="password"
+                  size={"lg"}
+                  placeholder="비밀번호"
+                  // className="w-full p-2 border rounded-md"
+                />
+                {isSignup && (
+                  <Input
+                    type="password"
+                    size={"lg"}
+                    placeholder="비밀번호 확인"
+                    // className="w-full p-2 border rounded-md"
+                  />
+                )}
+                <Button
+                  color="primary"
+                  size={"lg"}
+                  onClick={() => {
+                    /* 로그인/회원가입 로직 추가 */
+                    router.push("/main");
+                  }}
+                >
+                  {isSignup ? "회원가입" : "로그인"}
+                </Button>
+
+                {!isSignup ? (
+                  <div className="text-center mt-2">
+                    계정이 없으신가요?{" "}
+                    <Link color="primary" onClick={() => setIsSignup(true)}>
+                      회원가입
+                    </Link>
+                    <p className="text-xs text-gray-500 mt-1">
+                      또는{" "}
+                      <Link
+                        className="cursor-pointer text-gray-500 text-xs underline"
+                        onClick={() => {
+                          router.push("/main");
+                        }}
+                      >
+                        계정 없이 시작하기
+                      </Link>
+                      를 통해 <br></br>제한된 기능을 이용할 수 있습니다.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="text-center mt-2">
+                    이미 계정이 있으신가요?{" "}
+                    <Link color="primary" onClick={() => setIsSignup(false)}>
+                      로그인
+                    </Link>
+                    <p className="text-xs text-gray-500 mt-1">
+                      또는{" "}
+                      <Link
+                        className="cursor-pointer text-gray-500 text-sm underline"
+                        onClick={() => {
+                          router.push("/main");
+                        }}
+                      >
+                        계정 없이 시작하기
+                      </Link>
+                      를 통해 <br></br>제한된 기능을 이용할 수 있습니다.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                color="danger"
+                variant="light"
+                onPress={onClose}
+                size={"sm"}
+              >
+                닫기
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
+  );
 
   return (
     <>
@@ -103,9 +223,7 @@ export default function Home() {
                   color={"default"}
                   variant={"bordered"}
                   aria-label="product"
-                  onClick={() => {
-                    router.push("/main");
-                  }}
+                  onClick={onAuthOpen}
                 >
                   {t("button-right")}
                 </Button>
@@ -121,6 +239,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Authentication Modal */}
+      <AuthModal />
     </>
   );
 }
