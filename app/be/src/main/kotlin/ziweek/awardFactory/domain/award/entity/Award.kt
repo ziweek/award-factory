@@ -12,13 +12,14 @@ data class Award (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: String? = null,
-    var awardValues: String,
-    var cornerShape: String,
-    var title: String,
-    var winner: String,
-    var description: String,
-    var publisher: String,
-    var date: String
+    val awardValues: String,
+    val cornerShape: String,
+    val title: String,
+    val winner: String,
+    val description: String,
+    val publisher: String,
+    val date: String,
+    val accountId: String
 ) {
     fun toResDto(): AwardResDto {
         return AwardResDto(
@@ -29,7 +30,8 @@ data class Award (
             winner = this.winner,
             description = this.description,
             publisher = this.publisher,
-            date = this.date
+            date = this.date,
+            accountId = this.accountId
         )
     }
 }

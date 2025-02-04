@@ -14,8 +14,8 @@ type Award {
     description: String
     publisher: String
     date: String
+    accountId: String
 }
-
 
 type Query {
     """
@@ -38,12 +38,14 @@ input CreateAccountInput {
     name: String!
     email: String!
     encodedPassword: String!
+    Awards: [CreateAwardInput]
 }
 input UpdateAccountInput {
     id: String!
     name: String
     email: String
     encodedPassword: String
+    Awards: [UpdateAwardInput]
 }
 
 input CreateAwardInput {
@@ -54,9 +56,9 @@ input CreateAwardInput {
     description: String!
     publisher: String!
     date: String!
+    accountId: String
 }
 input UpdateAwardInput {
-    id: String
     awardValues: String
     cornerShape: String
     title: String
@@ -64,6 +66,7 @@ input UpdateAwardInput {
     description: String
     publisher: String
     date: String
+    accountId: String
 }
 
 type Mutation {

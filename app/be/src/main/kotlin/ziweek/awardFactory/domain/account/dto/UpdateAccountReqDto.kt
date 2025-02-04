@@ -1,8 +1,10 @@
 package ziweek.awardFactory.domain.account.dto
 
+import ziweek.awardFactory.domain.award.entity.Award
+
 data class UpdateAccountReqDto(
-    val id: String,
-    val name: String?,
-    val email: String?,
-    val encodedPassword: String?
+    val name: String,
+    val email: String,
+    val encodedPassword: String,
+    val awards: List<Award>
 )

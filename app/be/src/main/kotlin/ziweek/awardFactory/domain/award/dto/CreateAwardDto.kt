@@ -10,7 +10,8 @@ data class CreateAwardDto(
     var winner: String,
     var description: String,
     var publisher: String,
-    var date: String
+    var date: String,
+    var accountId: String
 ) {
     fun toEntity(): Award {
         return Award(
@@ -20,7 +21,8 @@ data class CreateAwardDto(
             winner = this.winner,
             description = this.description,
             publisher = this.publisher,
-            date = this.date
+            date = this.date,
+            accountId = this.accountId
         )
     }
 

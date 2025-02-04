@@ -1,5 +1,6 @@
 package ziweek.awardFactory.domain.account.api
 
+import jakarta.persistence.Cacheable
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
@@ -31,9 +32,10 @@ class AccountResolver(
 
     @MutationMapping
     fun updateAccount(
+        @Argument id: String = "67a26f7bcaeef150ad56a25d",
         @Argument(name = "updateAccountInput") updateAccountReqDto: UpdateAccountReqDto
     ): AccountResDto {
-        return accountService.updateAccount(updateAccountReqDto).toResDto()
+        return accountService.updateAccount(id, updateAccountReqDto).toResDto()
     }
 
     @MutationMapping

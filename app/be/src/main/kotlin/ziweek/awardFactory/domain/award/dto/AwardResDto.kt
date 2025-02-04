@@ -8,5 +8,6 @@ data class AwardResDto(
     var winner: String,
     var description: String,
     var publisher: String,
-    var date: String
+    var date: String,
+    var accountId: String
 )

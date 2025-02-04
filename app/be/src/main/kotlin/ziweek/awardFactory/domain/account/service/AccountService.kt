@@ -1,5 +1,6 @@
 package ziweek.awardFactory.domain.account.service
 
+import jakarta.persistence.Cacheable
 import org.springframework.stereotype.Service
 import ziweek.awardFactory.domain.account.dto.CreateAccountReqDto
 import ziweek.awardFactory.domain.account.dto.UpdateAccountReqDto
@@ -15,18 +16,23 @@ class AccountService(
         return accountRepository.save(createAccountReqDto.toEntity())
     }
 
+    fun getAccountById(id: String): Account {
+        return accountRepository.findAccountById(id)
+    }
+
     fun getAccountByEmail(email: String): Account {
         return accountRepository.findAccountByEmail(email)
     }
 
-    fun updateAccount(updateAccountReqDto: UpdateAccountReqDto): Account {
-        val account = accountRepository.findAccountById(updateAccountReqDto.id)
-        account.apply {
-            updateAccountReqDto.name?.let { this.name = it }
-            updateAccountReqDto.email?.let { this.email = it }
-            updateAccountReqDto.encodedPassword?.let { this.encodedPassword = it }
-        }
-        return accountRepository.save(account)
+    fun updateAccount(id: String, updateAccountReqDto: UpdateAccountReqDto): Account {
+        val account = accountRepository.findAccountById(id)
+        val newAccount = account.copy(
+            name = updateAccountReqDto.name ?: account.name,
+            email = updateAccountReqDto.email ?: account.email,
+            encodedPassword = updateAccountReqDto.encodedPassword ?: account.encodedPassword,
+            awards = updateAccountReqDto.awards ?: account.awards
+        )
+        return accountRepository.save(newAccount)
     }
 
     fun deleteAccount(id: String) {
