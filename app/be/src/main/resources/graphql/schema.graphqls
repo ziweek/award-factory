@@ -1,0 +1,86 @@
+type Account {
+    id: ID
+    name: String
+    email: String
+    encodedPassword: String
+    awards: [Award]
+}
+type Award {
+    id: ID
+    awardValues: String
+    cornerShape: String
+    title: String
+    winner: String
+    description: String
+    publisher: String
+    date: String
+    accountId: String
+}
+
+type Query {
+    """
+    Email로 Account 가져오기
+    """
+    getAccountByEmail(email: String!): Account
+
+    """
+    이메일로 Account 가져오기, 그에 해당하는 모든 awards 가져오기
+    """
+    getAwardsByEmail(email: String!): [Award]
+    """
+    Id로 award 가져오기
+    """
+    getAwardById(id: String!): Award
+}
+
+
+input CreateAccountInput {
+    name: String!
+    email: String!
+    encodedPassword: String!
+    Awards: [CreateAwardInput]
+}
+input UpdateAccountInput {
+    id: String!
+    name: String
+    email: String
+    encodedPassword: String
+    Awards: [UpdateAwardInput]
+}
+
+input CreateAwardInput {
+    awardValues: String!
+    cornerShape: String!
+    title: String!
+    winner: String!
+    description: String!
+    publisher: String!
+    date: String!
+    accountId: String
+}
+input UpdateAwardInput {
+    awardValues: String
+    cornerShape: String
+    title: String
+    winner: String
+    description: String
+    publisher: String
+    date: String
+    accountId: String
+}
+
+type Mutation {
+    """
+    Account
+    """
+    createAccount(createAccountInput: CreateAccountInput!): Account
+    updateAccount(updateAccountInput: UpdateAccountInput!): Account
+    deleteAccount(id: String!): String
+
+    """
+    Award
+    """
+    createAward(createAwardInput: CreateAwardInput!): Award
+    updateAward(updateAwardInput: UpdateAwardInput!): Award
+    deleteAward(id: String!): String
+}

@@ -4,13 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Award, UserProfile } from "@/types";
-import { 
-  Edit, 
-  Trash2, 
-  UserCog, 
-  Trophy, 
-  Share2 
-} from "lucide-react";
+import { Edit, Trash2, UserCog, Trophy, Share2 } from "lucide-react";
 
 // Fake data generation with more social media-like details
 const generateFakeProfile = (): UserProfile => ({
@@ -23,11 +17,13 @@ const generateFakeProfile = (): UserProfile => ({
   profileImageUrl: "/images/profile-placeholder.png",
 });
 
-const generateFakeAwards = (count: number = 6): Award[] => 
+const generateFakeAwards = (count: number = 6): Award[] =>
   Array.from({ length: count }, (_, index) => ({
     id: `award_${index + 1}`,
     title: `${["🏆", "🥇", "🎉"][index % 3]} Achievement ${index + 1}`,
-    description: `Recognized for outstanding performance in ${["Technology", "Innovation", "Leadership"][index % 3]}. A testament to hard work and dedication.`,
+    description: `Recognized for outstanding performance in ${
+      ["Technology", "Innovation", "Leadership"][index % 3]
+    }. A testament to hard work and dedication.`,
     userId: "user_123",
     date: new Date(2023, index, 15).toLocaleDateString(),
     likes: Math.floor(Math.random() * 100),
@@ -47,7 +43,7 @@ export default function ProfilePage() {
     try {
       const fakeProfile = generateFakeProfile();
       const fakeAwards = generateFakeAwards();
-      
+
       setProfile(fakeProfile);
       setAwards(fakeAwards);
     } catch (error) {
@@ -85,21 +81,21 @@ export default function ProfilePage() {
         <div className="bg-white shadow-md rounded-lg p-6 mb-6">
           <div className="flex items-center space-x-6">
             <div className="relative">
-              <Image 
+              {/* <Image 
                 src={profile.profileImageUrl} 
                 alt={`${profile.name}'s profile`}
                 width={120} 
                 height={120} 
                 className="rounded-full border-4 border-blue-500"
-              />
-              <button 
+              /> */}
+              <button
                 onClick={() => setIsEditing(true)}
                 className="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-2"
               >
                 <UserCog className="w-5 h-5" />
               </button>
             </div>
-            
+
             <div className="flex-1">
               <div className="flex justify-between items-center">
                 <div>
@@ -107,7 +103,7 @@ export default function ProfilePage() {
                   <p className="text-gray-600">{profile.bio}</p>
                 </div>
               </div>
-              
+
               <div className="flex space-x-6 mt-4">
                 <div className="text-center">
                   <span className="font-bold block">{profile.followers}</span>
@@ -129,8 +125,8 @@ export default function ProfilePage() {
         {/* Awards Section */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {awards.map((award) => (
-            <div 
-              key={award.id} 
+            <div
+              key={award.id}
               className="bg-white rounded-lg shadow-md overflow-hidden transform transition hover:scale-105"
             >
               <div className="p-4">
@@ -139,13 +135,13 @@ export default function ProfilePage() {
                     {award.title}
                   </h3>
                   <div className="flex space-x-2">
-                    <button 
+                    <button
                       onClick={() => router.push(`/awards/edit/${award.id}`)}
                       className="text-green-500 hover:bg-green-100 p-1 rounded"
                     >
                       <Edit className="w-5 h-5" />
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleDeleteAward(award.id)}
                       className="text-red-500 hover:bg-red-100 p-1 rounded"
                     >
@@ -154,7 +150,7 @@ export default function ProfilePage() {
                   </div>
                 </div>
                 <p className="text-gray-600 mb-4">{award.description}</p>
-                
+
                 <div className="flex justify-between items-center text-sm text-gray-500">
                   <span>{award.date}</span>
                   <div className="flex items-center space-x-2">
