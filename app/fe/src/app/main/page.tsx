@@ -6,11 +6,6 @@ import {
   Tabs,
   Tab,
   Button,
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   DatePicker,
   Tooltip,
   Input,
@@ -33,7 +28,6 @@ import Footer from "@/component/footer";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import axios from "axios";
-import { useDisclosure } from "@nextui-org/react";
 
 export default function Home() {
   const isMobile = useIsMobile();
@@ -109,57 +103,6 @@ export default function Home() {
       { key: t("input-label-1-template-4"), src: `` },
     ],
   });
-  const [modalOption, setModalOption] = useState({
-    isTutorialOpen: true,
-    tutorialContentIndex: 0,
-    tutorialContent: [
-      {
-        title: "🤖 AI가 알아서 말아주는 상장",
-        desription: (
-          <div className="space-y-2 select-none">
-            <p className="text-gray-500 py-2 text-center text-sm px-4 mx-auto break-keep w-2/3">
-              💡 AI는 당신의 설명을 바탕으로 창의적이고 개성 있는 상장을
-              만들어드립니다.
-            </p>
-            <p>(1) 먼저 AI 생성 상장 탭을 열어줍니다.</p>
-            <p>(2) 필요한 내용을 자유롭게 서술합니다.</p>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>
-                매일 야근하는 김야근 씨의 헌신적인 업무 자세를 칭찬하기 위한
-                상장을 만들고 싶어!
-              </li>
-              <li>
-                고객 서비스 부문에서 최고의 성과를 거둔 박친절 씨를 축하하는
-                특별한 상장을 만들고 싶어!
-              </li>
-            </ul>
-          </div>
-        ),
-      },
-      {
-        title: "🏆 상장 만들기",
-        desription: (
-          <div className="space-y-2 select-none">
-            <p>(1) 먼저 원하는 상장 템플릿을 선택하세요.</p>
-            <p>(2) 선택한 템플릿에 제목 등을 입력합니다.</p>
-            <p>(3) 상장 디자인을 확인하고 다운로드합니다.</p>
-          </div>
-        ),
-      },
-      {
-        title: "👏 명예의 전당 살펴보기",
-        desription: (
-          <div className="space-y-2 select-none">
-            <p>(1) 먼저 출품할 상장을 만듭니다.</p>
-            <p>(2) 명예의 전당에 전송하기로 제출합니다.</p>
-            <p>(3) 평가를 거쳐 우수한 작품은 전시됩니다.</p>
-          </div>
-        ),
-      },
-    ],
-    isModalOpen: false,
-    buttonSelected: "",
-  });
   const [hallOfFame, setHallOfFame] = useState([
     {
       title: "커피 애호가상",
@@ -202,83 +145,6 @@ export default function Home() {
     },
   ]);
 
-  const {
-    isOpen: isTutorialOpen,
-    onOpen: onTutorialOpen,
-    onOpenChange: onTutorialOpenChange,
-    onClose: onTutorialClose,
-  } = useDisclosure({
-    defaultOpen: true,
-  });
-
-  const TutorialModal = () => (
-    <Modal
-      isOpen={isTutorialOpen}
-      onOpenChange={onTutorialOpenChange}
-      size={"md"}
-      placement={"bottom"}
-    >
-      <ModalContent>
-        {(onClose) => (
-          <>
-            <ModalHeader className="flex flex-col gap-1">
-              {
-                modalOption.tutorialContent[modalOption.tutorialContentIndex]
-                  .title
-              }
-            </ModalHeader>
-            <ModalBody>
-              <div className="space-y-4 text-left px-2">
-                {
-                  modalOption.tutorialContent[modalOption.tutorialContentIndex]
-                    .desription
-                }
-              </div>
-            </ModalBody>
-            <ModalFooter className="flex justify-between mb-4">
-              <Button
-                color="default"
-                variant="light"
-                onPress={() => {
-                  if (modalOption.tutorialContentIndex > 0) {
-                    setModalOption((prev) => ({
-                      ...prev,
-                      tutorialContentIndex: prev.tutorialContentIndex - 1,
-                    }));
-                  }
-                }}
-                isDisabled={modalOption.tutorialContentIndex === 0}
-              >
-                이전
-              </Button>
-              <Button
-                color="primary"
-                onPress={() => {
-                  if (
-                    modalOption.tutorialContentIndex <
-                    modalOption.tutorialContent.length - 1
-                  ) {
-                    setModalOption((prev) => ({
-                      ...prev,
-                      tutorialContentIndex: prev.tutorialContentIndex + 1,
-                    }));
-                  } else {
-                    onTutorialClose();
-                  }
-                }}
-              >
-                {modalOption.tutorialContentIndex ===
-                modalOption.tutorialContent.length - 1
-                  ? "시작하기"
-                  : "다음"}
-              </Button>
-            </ModalFooter>
-          </>
-        )}
-      </ModalContent>
-    </Modal>
-  );
-
   useEffect(() => {
     AOS.init({ once: true, mirror: false });
     const checkResize = () => {
@@ -318,9 +184,6 @@ export default function Home() {
                     <Tooltip
                       content={"상장 만들기 탭"}
                       showArrow
-                      isOpen={
-                        isTutorialOpen && modalOption.tutorialContentIndex == 1
-                      }
                       placement={"bottom"}
                       color={"primary"}
                       size={"lg"}
@@ -336,10 +199,6 @@ export default function Home() {
                         <Tooltip
                           content={"AI 생성 상장 탭"}
                           showArrow
-                          isOpen={
-                            isTutorialOpen &&
-                            modalOption.tutorialContentIndex == 0
-                          }
                           placement={"bottom"}
                           color={"primary"}
                           size={"lg"}
@@ -652,9 +511,6 @@ export default function Home() {
                     <Tooltip
                       content={"명예의 전당 탭"}
                       showArrow
-                      isOpen={
-                        isTutorialOpen && modalOption.tutorialContentIndex == 2
-                      }
                       placement={"bottom"}
                       color={"primary"}
                       size={"lg"}
@@ -755,7 +611,6 @@ export default function Home() {
           subtitle={tf("footer-description")}
         ></Footer>
       </section>
-      {TutorialModal()}
     </>
   );
 }
