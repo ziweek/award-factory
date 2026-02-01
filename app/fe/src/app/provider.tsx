@@ -5,7 +5,6 @@ import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useTheme } from "next-themes";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import "regenerator-runtime/runtime";
 
 const queryClient = new QueryClient();
 
